@@ -1,6 +1,6 @@
 .list-group {
-  max-height: 200px;
-  overflow-y: scroll;
+  max-height: 300px;
+  overflow: scroll;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   scrollbar-width: none;

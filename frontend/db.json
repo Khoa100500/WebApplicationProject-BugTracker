@@ -4,20 +4,23 @@
       "ID": 1,
       "title": "simple bug",
       "description": "This bug is from Hanoi",
-      "staffID": "1",
-      "customerID": "2",
+      "staffID": 1,
+      "userID": 6,
       "updates": [
         {
           "time": "21/5/12",
-          "content": "bug created"
+          "content": "bug created",
+          "authorID": 1
         },
         {
           "time": "34/234/2",
-          "content": "partially fixed the bug"
+          "content": "partially fixed the bug",
+          "authorID": 2
         },
         {
           "time": "21/5/12",
-          "content": "staff 2 forward to staff 1"
+          "content": "staff 2 forward to staff 1",
+          "authorID": 3
         }
       ]
     },
@@ -25,16 +28,18 @@
       "ID": 2,
       "title": "another simple bug",
       "description": "This bug is from Ho Chi Minh City",
-      "staffID": "3",
-      "customerID": "1",
+      "staffID": 3,
+      "userID": 7,
       "updates": [
         {
           "time": "21/5/12",
-          "content": "bug created"
+          "content": "bug created",
+          "authorID": 2
         },
         {
           "time": "34/234/2",
-          "content": "partially fixed the bug"
+          "content": "partially fixed the bug",
+          "authorID": 2
         }
       ]
     },
@@ -42,16 +47,18 @@
       "ID": 3,
       "title": "last simple bug",
       "description": "This bug has no interest in water",
-      "staffID": "2",
-      "customerID": "2",
+      "staffID": 2,
+      "userID": 6,
       "updates": [
         {
           "time": "21/5/12",
-          "content": "bug created"
+          "content": "bug created",
+          "authorID": 4
         },
         {
-          "time": "34/234/2",
-          "content": "partially fixed the bug"
+          "time": "34/34/2",
+          "content": "partially fixed the bug",
+          "authorID": 5
         }
       ]
     },
@@ -59,12 +66,13 @@
       "ID": 4,
       "title": "một con bug klq",
       "description": "This bug just don't care who you are",
-      "staffID": "4",
-      "customerID": "1",
+      "staffID": 4,
+      "userID": 7,
       "updates": [
         {
           "time": "34/234/2",
-          "content": "partially fixed the bug"
+          "content": "partially fixed the bug",
+          "authorID": 4
         }
       ]
     },
@@ -72,46 +80,57 @@
       "ID": 5,
       "title": "simple bug",
       "description": "decribe simple bug5",
-      "staffID": "5",
-      "customerID": "1",
+      "staffID": 5,
+      "userID": 7,
       "updates": [
         {
           "time": "21/5/12",
-          "content": "bug created"
+          "content": "bug created",
+          "authorID": 1
         }
       ]
     }
   ],
-  "staffs": [
+  "people": [
     {
-      "ID": "1",
-      "name": "Chien"
+      "ID": 0,
+      "name": "The Master",
+      "role": "admin"
     },
     {
-      "ID": "2",
-      "name": "Khoa"
+      "ID": 1,
+      "name": "Chien",
+      "role": "staff"
     },
     {
-      "ID": "3",
-      "name": "Tuan"
+      "ID": 2,
+      "name": "Khoa",
+      "role": "staff"
     },
     {
-      "ID": "4",
-      "name": "Kha"
+      "ID": 3,
+      "name": "Tuan",
+      "role": "staff"
     },
     {
-      "ID": "5",
-      "name": "Khang"
-    }
-  ],
-  "customers": [
-    {
-      "ID": "1",
-      "name": "Sensei"
+      "ID": 4,
+      "name": "Kha",
+      "role": "staff"
     },
     {
-      "ID": "2",
-      "name": "Dumbass"
+      "ID": 5,
+      "name": "Khang",
+      "role": "staff"
+    },
+    {
+      "ID": 6,
+      "name": "Company Facebook",
+      "role": "user"
+    },
+    {
+      "ID": 7,
+      "name": "Company Google",
+      "role": "user"
     }
   ]
 }

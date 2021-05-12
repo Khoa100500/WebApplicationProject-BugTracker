@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
+import BtnAdd from './BtnAdd.component'
 
 const BugList = ({ selectedBugID, setSelectedBugID, bugList }) => {
   const { id, role, name } = useContext(GlobalContext).user
@@ -8,7 +9,7 @@ const BugList = ({ selectedBugID, setSelectedBugID, bugList }) => {
     <div className="card bg-primary text-white">
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Bug list</h5>
-        <button className="btn btn-outline-light">+</button>
+        <BtnAdd />
       </div>
       <ul className="list-group list-group-flush">
         {bugList.map((bug) => (

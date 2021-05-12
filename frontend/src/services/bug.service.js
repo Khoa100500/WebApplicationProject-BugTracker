@@ -7,14 +7,6 @@ export const getBugList = () => {
   })
 }
 
-export const getCustomerList = () => {
-  return axios.get(config.BACKEND + '/customers').then((res) => {
-    return res.data
-  })
-}
+export const updateBug = (bugID, content) => {
 
-export const getStaffList = () => {
-  return axios.get(config.BACKEND + '/staffs').then((res) => {
-    return res.data
-  })
 }

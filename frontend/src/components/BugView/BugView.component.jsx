@@ -1,28 +1,20 @@
 import BugList from './BugList.component'
 import BugDetail from './BugDetail.component'
-import {
-  getBugList,
-  getCustomerList,
-  getStaffList,
-} from '../../services/bug.service'
+import { getBugList } from '../../services/bug.service'
+import { getPeopleList } from '../../services/people.service'
 import { useState, useEffect } from 'react'
 import './BugView.css'
 
 const BugView = () => {
   const [selectedBugID, setSelectedBugID] = useState()
   const [bugList, setBugList] = useState([])
-  const [customerList, setCustomerList] = useState([])
-  const [staffList, setStaffList] = useState([])
-
+  const [peopleList, setPeopleList] = useState([])
   useEffect(() => {
     getBugList().then((bugs) => {
       setBugList(bugs)
     })
-    getCustomerList().then((customers) => {
-      setCustomerList(customers)
-    })
-    getStaffList().then((staffs) => {
-      setStaffList(staffs)
+    getPeopleList().then((people) => {
+      setPeopleList(people)
     })
   }, [])
 
@@ -40,8 +32,7 @@ const BugView = () => {
           <BugDetail
             selectedBugID={selectedBugID}
             bugList={bugList}
-            customerList={customerList}
-            staffList={staffList}
+            peopleList={peopleList}
           />
         </div>
       </div>
