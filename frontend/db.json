@@ -1,34 +1,117 @@
 {
   "bugs": [
     {
-      "id": 1,
+      "ID": 1,
       "title": "simple bug",
       "description": "This bug is from Hanoi",
-      "from": "Tue"
+      "staffID": "1",
+      "customerID": "2",
+      "updates": [
+        {
+          "time": "21/5/12",
+          "content": "bug created"
+        },
+        {
+          "time": "34/234/2",
+          "content": "partially fixed the bug"
+        },
+        {
+          "time": "21/5/12",
+          "content": "staff 2 forward to staff 1"
+        }
+      ]
     },
     {
-      "id": 2,
+      "ID": 2,
       "title": "another simple bug",
       "description": "This bug is from Ho Chi Minh City",
-      "from": "Mon"
+      "staffID": "3",
+      "customerID": "1",
+      "updates": [
+        {
+          "time": "21/5/12",
+          "content": "bug created"
+        },
+        {
+          "time": "34/234/2",
+          "content": "partially fixed the bug"
+        }
+      ]
     },
     {
-      "id": 3,
+      "ID": 3,
       "title": "last simple bug",
       "description": "This bug has no interest in water",
-      "from": "Sat"
+      "staffID": "2",
+      "customerID": "2",
+      "updates": [
+        {
+          "time": "21/5/12",
+          "content": "bug created"
+        },
+        {
+          "time": "34/234/2",
+          "content": "partially fixed the bug"
+        }
+      ]
     },
     {
-      "id": 4,
+      "ID": 4,
       "title": "một con bug klq",
       "description": "This bug just don't care who you are",
-      "from": "Fri"
+      "staffID": "4",
+      "customerID": "1",
+      "updates": [
+        {
+          "time": "34/234/2",
+          "content": "partially fixed the bug"
+        }
+      ]
     },
     {
-      "id": 5,
+      "ID": 5,
       "title": "simple bug",
       "description": "decribe simple bug5",
-      "from": "Sun"
+      "staffID": "5",
+      "customerID": "1",
+      "updates": [
+        {
+          "time": "21/5/12",
+          "content": "bug created"
+        }
+      ]
+    }
+  ],
+  "staffs": [
+    {
+      "ID": "1",
+      "name": "Chien"
+    },
+    {
+      "ID": "2",
+      "name": "Khoa"
+    },
+    {
+      "ID": "3",
+      "name": "Tuan"
+    },
+    {
+      "ID": "4",
+      "name": "Kha"
+    },
+    {
+      "ID": "5",
+      "name": "Khang"
+    }
+  ],
+  "customers": [
+    {
+      "ID": "1",
+      "name": "Sensei"
+    },
+    {
+      "ID": "2",
+      "name": "Dumbass"
     }
   ]
 }

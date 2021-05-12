@@ -6,3 +6,15 @@ export const getBugList = () => {
     return res.data
   })
 }
+
+export const getCustomerList = () => {
+  return axios.get(config.BACKEND + '/customers').then((res) => {
+    return res.data
+  })
+}
+
+export const getStaffList = () => {
+  return axios.get(config.BACKEND + '/staffs').then((res) => {
+    return res.data
+  })
+}
