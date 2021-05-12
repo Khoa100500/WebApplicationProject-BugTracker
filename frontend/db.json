@@ -1,0 +1,34 @@
+{
+  "bugs": [
+    {
+      "id": 1,
+      "title": "simple bug",
+      "description": "This bug is from Hanoi",
+      "from": "Tue"
+    },
+    {
+      "id": 2,
+      "title": "another simple bug",
+      "description": "This bug is from Ho Chi Minh City",
+      "from": "Mon"
+    },
+    {
+      "id": 3,
+      "title": "last simple bug",
+      "description": "This bug has no interest in water",
+      "from": "Sat"
+    },
+    {
+      "id": 4,
+      "title": "một con bug klq",
+      "description": "This bug just don't care who you are",
+      "from": "Fri"
+    },
+    {
+      "id": 5,
+      "title": "simple bug",
+      "description": "decribe simple bug5",
+      "from": "Sun"
+    }
+  ]
+}
