@@ -34,21 +34,21 @@ const BtnForward = ({ bug }) => {
 
   return (
     <>
-      <div class="modal fade text-dark" id="modalForwardBug" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-primary text-light">
-              <h5 class="modal-title">Forward bug</h5>
+      <div className="modal fade text-dark" id="modalForwardBug" tabIndex="-1">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header bg-primary text-light">
+              <h5 className="modal-title">Forward bug</h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
               ></button>
             </div>
-            <div class="modal-body">
-              <div class="form-floating mb-3">
+            <div className="modal-body">
+              <div className="form-floating mb-3">
                 <select
-                  class="form-select"
+                  className="form-select"
                   id="selectStaff"
                   style={{ height: '65px' }}
                   value={staffID}
@@ -62,20 +62,20 @@ const BtnForward = ({ bug }) => {
                     </option>
                   ))}
                 </select>
-                <label for="selectStaff">Forward to staff</label>
+                <label htmlFor="selectStaff">Forward to staff</label>
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-dismiss="modal"
                 onClick={handleSubmit}
               >

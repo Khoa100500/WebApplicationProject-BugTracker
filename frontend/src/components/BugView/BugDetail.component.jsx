@@ -33,14 +33,14 @@ const BugDetail = ({ selectedBugID }) => {
       </div>
       <div className="card-body bg-white text-dark">
         <div className="row mb-2 align-items-center">
-          <label className="col-2" htmlFor="title">
+          <label className="col-2" htmlFor="titledetail">
             <strong>Title</strong>
           </label>
           <div className="col-10">
             <input
               readOnly
               type="text"
-              id="title"
+              id="titledetail"
               className="form-control"
               value={bug?.title}
             />
@@ -61,16 +61,16 @@ const BugDetail = ({ selectedBugID }) => {
         </div>
 
         <div className="row mb-2 align-items-center">
-          <label className="col-2" htmlFor="user">
+          <label className="col-2" htmlFor="userdetail">
             <strong>User</strong>
           </label>
           <div className="col-10">
             <div className="input-group">
-              <span class="input-group-text">@{user?.username}</span>
+              <span className="input-group-text">@{user?.username}</span>
               <input
                 readOnly
                 type="text"
-                id="user"
+                id="userdetail"
                 className="form-control"
                 value={user?.name}
               />
@@ -78,16 +78,16 @@ const BugDetail = ({ selectedBugID }) => {
           </div>
         </div>
         <div className="row mb-2 align-items-center">
-          <label className="col-2" htmlFor="staff">
+          <label className="col-2" htmlFor="staffdetail">
             <strong>Staff</strong>
           </label>
           <div className="col-10">
             <div className="input-group">
-              <span class="input-group-text">@{staff?.username}</span>
+              <span className="input-group-text">@{staff?.username}</span>
               <input
                 readOnly
                 type="text"
-                id="user"
+                id="staffdetail"
                 className="form-control"
                 value={staff?.name}
               />

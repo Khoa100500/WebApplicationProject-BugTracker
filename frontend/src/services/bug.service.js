@@ -32,7 +32,6 @@ export const addBug = (authorID, title, description, userID, staffID) => {
 }
 
 export const updateBug = (bugID, authorID, content, oldUpdates) => {
-
   return axios.patch(config.BACKEND + '/bugs/' + bugID, {
     updates: [
       ...oldUpdates,

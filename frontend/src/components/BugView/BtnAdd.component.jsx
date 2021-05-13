@@ -42,33 +42,33 @@ const BtnAdd = () => {
 
   return (
     <>
-      <div class="modal fade text-dark " id="modalAddBug" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-primary text-light">
-              <h5 class="modal-title">Add new bug</h5>
+      <div className="modal fade text-dark " id="modalAddBug" tabIndex="-1">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header bg-primary text-light">
+              <h5 className="modal-title">Add new bug</h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
               ></button>
             </div>
-            <div class="modal-body">
-              <div class="form-floating mb-3">
+            <div className="modal-body">
+              <div className="form-floating mb-3">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="title"
                   value={title}
                   onChange={(e) => {
                     setTitle(e.target.value)
                   }}
                 />
-                <label for="title">Title</label>
+                <label htmlFor="title">Title</label>
               </div>
-              <div class="form-floating mb-3">
+              <div className="form-floating mb-3">
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   id="description"
                   style={{ height: '100px' }}
                   value={description}
@@ -76,11 +76,11 @@ const BtnAdd = () => {
                     setDescription(e.target.value)
                   }}
                 />
-                <label for="description">Description</label>
+                <label htmlFor="description">Description</label>
               </div>
-              <div class="form-floating mb-3">
+              <div className="form-floating mb-3">
                 <select
-                  class="form-select"
+                  className="form-select"
                   id="selectUser"
                   style={{ height: '65px' }}
                   value={userID}
@@ -94,11 +94,11 @@ const BtnAdd = () => {
                     </option>
                   ))}
                 </select>
-                <label for="selectUser">Select user</label>
+                <label htmlFor="selectUser">Select user</label>
               </div>
-              <div class="form-floating mb-3">
+              <div className="form-floating mb-3">
                 <select
-                  class="form-select"
+                  className="form-select"
                   id="selectStaff"
                   style={{ height: '65px' }}
                   value={staffID}
@@ -112,20 +112,20 @@ const BtnAdd = () => {
                     </option>
                   ))}
                 </select>
-                <label for="selectStaff">Select staff</label>
+                <label htmlFor="selectStaff">Select staff</label>
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-dismiss="modal"
                 onClick={handleSubmit}
               >

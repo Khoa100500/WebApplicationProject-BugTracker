@@ -6,31 +6,31 @@ const BtnKill = ({ bugID }) => {
   const { refreshBugList } = useContext(GlobalContext)
   return (
     <>
-      <div class="modal fade text-dark" id="modalKillBug" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-primary text-light">
-              <h5 class="modal-title">Kill bug</h5>
+      <div className="modal fade text-dark" id="modalKillBug" tabIndex="-1">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header bg-primary text-light">
+              <h5 className="modal-title">Kill bug</h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               Do you really want to kill this innocent bug?
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-dismiss="modal"
                 onClick={(e) => {
                   e.preventDefault()

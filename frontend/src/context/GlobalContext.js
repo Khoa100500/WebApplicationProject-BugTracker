@@ -8,7 +8,8 @@ export const GlobalContextProvider = ({ children }) => {
   const [user, setUser] = useState({
     id: '0',
     role: 'admin',
-    name: 'The Master'
+    name: 'The Master',
+    username: 'master'
   })
   const [bugList, setBugList] = useState([])
   const [peopleList, setPeopleList] = useState([])

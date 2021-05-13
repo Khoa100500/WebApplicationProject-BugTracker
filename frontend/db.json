@@ -138,6 +138,30 @@
         }
       ],
       "id": "RtVrlKW"
+    },
+    {
+      "title": "bug trc khi ngủ",
+      "description": "ngủ đết đc",
+      "userID": "7",
+      "staffID": "1",
+      "updates": [
+        {
+          "time": "2021-05-13 15:07:49",
+          "content": "Bug created",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-13 15:08:05",
+          "content": "2 giờ rồi mà vẫn chưa ngủ\n",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-13 15:08:22",
+          "content": "thôi bỏ đi, khỏi ngủ",
+          "authorID": "0"
+        }
+      ],
+      "id": "zmoGoTh"
     }
   ],
   "people": [
