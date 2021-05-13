@@ -20,8 +20,14 @@ const BtnForward = ({ bug }) => {
 
   const [staffID, setStaffID] = useState(staffList[0]?.id)
 
-  const handleSubmit = (e) => {
-    forwardBug(bug.id, id, staffID, bug.updates).then(() => {
+  const handleSubmit = () => {
+    forwardBug(
+      bug.id,
+      id,
+      staffID,
+      bug.updates,
+      peopleList.filter((staff) => staff.id === staffID)[0].username
+    ).then(() => {
       refreshBugList()
     })
   }
@@ -52,7 +58,7 @@ const BtnForward = ({ bug }) => {
                 >
                   {staffList.map((staff) => (
                     <option key={staff.id} value={staff.id}>
-                      {`[staff${staff.id}] ${staff.name}`}
+                      {`[${staff.username}] ${staff.name}`}
                     </option>
                   ))}
                 </select>

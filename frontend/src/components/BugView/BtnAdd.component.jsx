@@ -90,7 +90,7 @@ const BtnAdd = () => {
                 >
                   {userList.map((user) => (
                     <option key={user.id} value={user.id}>
-                      {`[user${user.id}] ${user.name}`}
+                      {`[${user.username}] ${user.name}`}
                     </option>
                   ))}
                 </select>
@@ -108,7 +108,7 @@ const BtnAdd = () => {
                 >
                   {staffList.map((staff) => (
                     <option key={staff.id} value={staff.id}>
-                      {`[staff${staff.id}] ${staff.name}`}
+                      {`[${staff.username}] ${staff.name}`}
                     </option>
                   ))}
                 </select>

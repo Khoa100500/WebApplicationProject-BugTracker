@@ -6,7 +6,7 @@ export const GlobalContext = createContext()
 
 export const GlobalContextProvider = ({ children }) => {
   const [user, setUser] = useState({
-    id: 0,
+    id: '0',
     role: 'admin',
     name: 'The Master'
   })

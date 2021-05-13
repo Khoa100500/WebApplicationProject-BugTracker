@@ -19,13 +19,13 @@ export const addBug = (authorID, title, description, userID, staffID) => {
   return axios.post(config.BACKEND + '/bugs', {
     title,
     description,
-    userID: +userID,
-    staffID: +staffID,
+    userID: userID,
+    staffID: staffID,
     updates: [
       {
         time: getCurrentTime(),
         content: 'Bug created',
-        authorID: +authorID
+        authorID: authorID
       }
     ]
   })
@@ -39,18 +39,18 @@ export const updateBug = (bugID, authorID, content, oldUpdates) => {
       {
         time: getCurrentTime(),
         content: content,
-        authorID: +authorID
+        authorID: authorID
       }
     ]
   }
   )
 }
 
-export const forwardBug = (bugID, authorID, newStaffID, oldUpdates) => {
+export const forwardBug = (bugID, authorID, newStaffID, oldUpdates, username) => {
   return axios.patch(config.BACKEND + '/bugs/' + bugID, {
-    staffID: +newStaffID,
+    staffID: newStaffID,
   }).then(() => {
-    return updateBug(bugID, authorID, 'Bug is forwarded to staff' + newStaffID, oldUpdates)
+    return updateBug(bugID, authorID, 'Bug is forwarded to @' + username, oldUpdates)
   })
 }
 

@@ -12,8 +12,10 @@ const BugDetail = ({ selectedBugID }) => {
   } = useContext(GlobalContext)
 
   const bug = bugList.filter((bug) => bug.id === selectedBugID)[0]
-  const getNameByID = (id) =>
-    peopleList.filter((user) => user.id === id)[0]?.name
+  const user = peopleList.filter((user) => user.id === bug?.userID)[0]
+  const staff = peopleList.filter((staff) => staff.id === bug?.staffID)[0]
+
+  const getPersonByID = (id) => peopleList.filter((user) => user.id === id)[0]
 
   return (
     <div className="card bg-primary text-light">
@@ -63,13 +65,16 @@ const BugDetail = ({ selectedBugID }) => {
             <strong>User</strong>
           </label>
           <div className="col-10">
-            <input
-              readOnly
-              type="text"
-              id="user"
-              className="form-control"
-              value={`${getNameByID(bug?.userID)} [user${bug?.userID}]`}
-            />
+            <div className="input-group">
+              <span class="input-group-text">@{user?.username}</span>
+              <input
+                readOnly
+                type="text"
+                id="user"
+                className="form-control"
+                value={user?.name}
+              />
+            </div>
           </div>
         </div>
         <div className="row mb-2 align-items-center">
@@ -77,13 +82,16 @@ const BugDetail = ({ selectedBugID }) => {
             <strong>Staff</strong>
           </label>
           <div className="col-10">
-            <input
-              readOnly
-              type="text"
-              id="staff"
-              className="form-control"
-              value={`${getNameByID(bug?.staffID)} [staff${bug?.staffID}]`}
-            />
+            <div className="input-group">
+              <span class="input-group-text">@{staff?.username}</span>
+              <input
+                readOnly
+                type="text"
+                id="user"
+                className="form-control"
+                value={staff?.name}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -95,15 +103,9 @@ const BugDetail = ({ selectedBugID }) => {
                 <strong>{time}</strong>
                 {' ' + content}
               </div>
-              <div>
-                <small>{'by '}</small>
-                <em className="text-primary">{getNameByID(authorID)}</em>
-                <small className="text-secondary">
-                  {' [' +
-                    peopleList.filter((user) => user.id === authorID)[0]?.role +
-                    authorID +
-                    ']'}
-                </small>
+              <div className="text-primary">
+                <em>{'@'}</em>
+                {getPersonByID(authorID)?.username}
               </div>
             </div>
           </li>
