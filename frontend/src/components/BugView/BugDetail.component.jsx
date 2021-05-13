@@ -1,22 +1,32 @@
 import BtnUpdate from './BtnUpdate.component'
 import BtnForward from './BtnForward.component'
 import BtnKill from './BtnKill.component'
+import { useContext } from 'react'
+import { GlobalContext } from '../../context/GlobalContext'
 
-const BugDetail = ({ selectedBugID, bugList, peopleList }) => {
-  const bug = bugList.filter((bug) => bug.ID === selectedBugID)[0]
-  const getNameByID = (ID) =>
-    peopleList.filter((user) => user.ID == ID)[0]?.name
+const BugDetail = ({ selectedBugID }) => {
+  const {
+    user: { role },
+    bugList,
+    peopleList,
+  } = useContext(GlobalContext)
+
+  const bug = bugList.filter((bug) => bug.id === selectedBugID)[0]
+  const getNameByID = (id) =>
+    peopleList.filter((user) => user.id === id)[0]?.name
 
   return (
     <div className="card bg-primary text-light">
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>
-          Bug <strong>#{bug?.ID}</strong>
+          Bug <strong>#{bug?.id}</strong>
         </h5>
         <div className="btn-group ">
-          <BtnUpdate />
-          <BtnForward />
-          <BtnKill />
+          {['admin', 'staff'].includes(role) && <BtnUpdate bug={bug} />}
+          {['admin', 'staff'].includes(role) && <BtnForward bug={bug} />}
+          {['admin', 'user'].includes(role) && (
+            <BtnKill bugID={selectedBugID} />
+          )}
         </div>
       </div>
       <div className="card-body bg-white text-dark">
@@ -42,6 +52,7 @@ const BugDetail = ({ selectedBugID, bugList, peopleList }) => {
               type="text"
               id="describe"
               className="form-control"
+              style={{ height: '100px' }}
               value={bug?.description}
             />
           </div>
@@ -57,7 +68,7 @@ const BugDetail = ({ selectedBugID, bugList, peopleList }) => {
               type="text"
               id="user"
               className="form-control"
-              value={`@user${bug?.userID} | ${getNameByID(bug?.userID)}`}
+              value={`${getNameByID(bug?.userID)} [user${bug?.userID}]`}
             />
           </div>
         </div>
@@ -71,7 +82,7 @@ const BugDetail = ({ selectedBugID, bugList, peopleList }) => {
               type="text"
               id="staff"
               className="form-control"
-              value={`@staff${bug?.staffID} | ${getNameByID(bug?.staffID)}`}
+              value={`${getNameByID(bug?.staffID)} [staff${bug?.staffID}]`}
             />
           </div>
         </div>
@@ -87,6 +98,12 @@ const BugDetail = ({ selectedBugID, bugList, peopleList }) => {
               <div>
                 <small>{'by '}</small>
                 <em className="text-primary">{getNameByID(authorID)}</em>
+                <small className="text-secondary">
+                  {' [' +
+                    peopleList.filter((user) => user.id === authorID)[0]?.role +
+                    authorID +
+                    ']'}
+                </small>
               </div>
             </div>
           </li>

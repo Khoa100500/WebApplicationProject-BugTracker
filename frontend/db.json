@@ -1,7 +1,7 @@
 {
   "bugs": [
     {
-      "ID": 1,
+      "id": 1,
       "title": "simple bug",
       "description": "This bug is from Hanoi",
       "staffID": 1,
@@ -21,30 +21,27 @@
           "time": "21/5/12",
           "content": "staff 2 forward to staff 1",
           "authorID": 3
-        }
-      ]
-    },
-    {
-      "ID": 2,
-      "title": "another simple bug",
-      "description": "This bug is from Ho Chi Minh City",
-      "staffID": 3,
-      "userID": 7,
-      "updates": [
-        {
-          "time": "21/5/12",
-          "content": "bug created",
-          "authorID": 2
         },
         {
-          "time": "34/234/2",
-          "content": "partially fixed the bug",
-          "authorID": 2
+          "time": "2021-05-13 08:41:19",
+          "content": "okê con dê rồi nhe",
+          "authorID": 1
         }
       ]
     },
     {
-      "ID": 3,
+      "staffID": null,
+      "updates": [
+        {
+          "time": "2021-05-13 07:52:04",
+          "content": "Bug is forwarded to staffundefined",
+          "authorID": 0
+        }
+      ],
+      "id": 2
+    },
+    {
+      "id": 3,
       "title": "last simple bug",
       "description": "This bug has no interest in water",
       "staffID": 2,
@@ -63,7 +60,7 @@
       ]
     },
     {
-      "ID": 4,
+      "id": 4,
       "title": "một con bug klq",
       "description": "This bug just don't care who you are",
       "staffID": 4,
@@ -77,58 +74,106 @@
       ]
     },
     {
-      "ID": 5,
-      "title": "simple bug",
-      "description": "decribe simple bug5",
-      "staffID": 5,
+      "title": "Cute bug",
+      "description": "This bug is not from India",
       "userID": 7,
+      "staffID": 4,
       "updates": [
         {
-          "time": "21/5/12",
-          "content": "bug created",
+          "time": "2021-05-13 07:29:13",
+          "content": "Bug created",
+          "authorID": 0
+        }
+      ],
+      "id": 6
+    },
+    {
+      "title": "sửa bug hoài mệt vler",
+      "description": "bỏ đi làm gì cho mệt",
+      "userID": 7,
+      "staffID": 1,
+      "updates": [
+        {
+          "time": "2021-05-13 07:29:52",
+          "content": "Bug created",
+          "authorID": 0
+        },
+        {
+          "time": "2021-05-13 08:39:03",
+          "content": "update cái nhẹ nè",
+          "authorID": 0
+        },
+        {
+          "time": "2021-05-13 08:41:07",
+          "content": "update tí",
           "authorID": 1
         }
-      ]
+      ],
+      "id": 7
+    },
+    {
+      "title": "tạo bug cái nhẹ",
+      "description": "sfgsfgdfgsdfgsdfg",
+      "userID": 7,
+      "staffID": 1,
+      "updates": [
+        {
+          "time": "2021-05-13 08:41:50",
+          "content": "Bug created",
+          "authorID": 1
+        },
+        {
+          "time": "2021-05-13 08:41:58",
+          "content": "hế lô",
+          "authorID": 1
+        },
+        {
+          "time": "2021-05-13 08:42:02",
+          "content": "Bug is forwarded to staff1",
+          "authorID": 1
+        }
+      ],
+      "id": 8
     }
   ],
   "people": [
     {
-      "ID": 0,
+      "id": 0,
       "name": "The Master",
       "role": "admin"
     },
     {
-      "ID": 1,
+      "id": 1,
       "name": "Chien",
       "role": "staff"
     },
     {
-      "ID": 2,
+      "id": 2,
       "name": "Khoa",
       "role": "staff"
     },
     {
-      "ID": 3,
+      "id": 3,
       "name": "Tuan",
       "role": "staff"
     },
     {
-      "ID": 4,
+      "id": 4,
       "name": "Kha",
       "role": "staff"
     },
     {
-      "ID": 5,
+      "id": 5,
       "name": "Khang",
       "role": "staff"
     },
     {
-      "ID": 6,
+      "id": 6,
       "name": "Company Facebook",
       "role": "user"
     },
     {
-      "ID": 7,
+      "id": 7,
       "name": "Company Google",
       "role": "user"
     }

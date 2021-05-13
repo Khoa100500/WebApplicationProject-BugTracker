@@ -2,26 +2,29 @@ import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 import BtnAdd from './BtnAdd.component'
 
-const BugList = ({ selectedBugID, setSelectedBugID, bugList }) => {
-  const { id, role, name } = useContext(GlobalContext).user
+const BugList = ({ selectedBugID, setSelectedBugID }) => {
+  const {
+    user: { role },
+    bugList,
+  } = useContext(GlobalContext)
 
   return (
     <div className="card bg-primary text-white">
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Bug list</h5>
-        <BtnAdd />
+        {role === 'admin' && <BtnAdd />}
       </div>
       <ul className="list-group list-group-flush">
         {bugList.map((bug) => (
           <li
-            key={bug.ID}
+            key={bug.id}
             className={
               'list-group-item user-select-none list-group-item-action' +
-              (bug.ID === selectedBugID ? ' active' : '')
+              (bug.id === selectedBugID ? ' active' : '')
             }
-            onClick={() => setSelectedBugID(bug.ID)}
+            onClick={() => setSelectedBugID(bug.id)}
           >
-            <strong>#{bug.ID}</strong>
+            <strong>#{bug.id}</strong>
             {' ' + bug.title}
           </li>
         ))}
