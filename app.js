@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var connection = require('./models/db')
+const { v4: uuidv4 } = require('uuid');
 
 var PORT = process.env.PORT || 3002;
 
@@ -30,13 +31,24 @@ app.get('/bugs?staffID=:id', (req,res) => {
   })
 
   app.post('/bugs', (req,res) => {
-    res.send({title: "sdasdasd"})
-})
+      var UUID = uuidv4();
+      var data = req.body;
+      var title = data.title;
+      var description = data.description;
+      var userID = data.userID;
+      var staffID = data.staffID;
+      var time = data.updates.time;
+      var content = data.updates.content;
+      var authorID = data.updates.authorID;
 
-  app.post('/bugs', (req,res) => {
-      let title = req.body.title;
+      sql1 = `INSERT INTO bug_report(bug_id,title,bug_description,status) VALUES (UUID_TO_BIN(${UUID}), "${title}", "${description}", 0)`;
+      sql2 = `INSERT INTO work_on(bug_id,staffID) VALUES(UUID_TO_BIN(${UUID}),${staffID})`;
+      sql3 = `INSERT INTO bug_update(bug_id,content,update_time) VALUES (UUID_TO_BIN(${UUID}),"${content}", ${time})`;
 
-      console.log(title)
+      connection.query(sql1);
+      connection.query(sql2);
+      connection.query(sql3);
+      
   })
 
 module.exports = app;
