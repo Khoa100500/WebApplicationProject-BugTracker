@@ -8,6 +8,7 @@ const BtnAdd = () => {
     peopleList,
     refreshBugList,
   } = useContext(GlobalContext)
+
   const userList = []
   const staffList = []
 

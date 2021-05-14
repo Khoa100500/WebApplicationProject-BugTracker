@@ -34,8 +34,7 @@ export const GlobalContextProvider = ({ children }) => {
   return (
     <GlobalContext.Provider value={{
       user, setUser,
-      bugList, setBugList,
-      peopleList, setPeopleList,
+      bugList, peopleList,
       refreshBugList, refreshPeopleList
     }}>
       {children}

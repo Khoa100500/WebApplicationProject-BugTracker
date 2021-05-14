@@ -7,15 +7,25 @@ import { GlobalContext } from '../../context/GlobalContext'
 const BugDetail = ({ selectedBugID }) => {
   const {
     user: { role },
-    bugList,
     peopleList,
+    bugList,
   } = useContext(GlobalContext)
 
-  const bug = bugList.filter((bug) => bug.id === selectedBugID)[0]
-  const user = peopleList.filter((user) => user.id === bug?.userID)[0]
-  const staff = peopleList.filter((staff) => staff.id === bug?.staffID)[0]
+  const userList = []
+  const staffList = []
 
-  const getPersonByID = (id) => peopleList.filter((user) => user.id === id)[0]
+  peopleList.forEach((person) => {
+    if (person.role === 'staff') {
+      staffList.push(person)
+    }
+    if (person.role === 'user') {
+      userList.push(person)
+    }
+  })
+
+  const bug = bugList.find((bug) => bug.id === selectedBugID)
+  const user = userList.find((user) => user.id === bug?.userID)
+  const staff = staffList.find((user) => user.id === bug?.staffID)
 
   return (
     <div className="card bg-primary text-light">
@@ -26,9 +36,7 @@ const BugDetail = ({ selectedBugID }) => {
         <div className="btn-group ">
           {['admin', 'staff'].includes(role) && <BtnUpdate bug={bug} />}
           {['admin', 'staff'].includes(role) && <BtnForward bug={bug} />}
-          {['admin', 'user'].includes(role) && (
-            <BtnKill bugID={selectedBugID} />
-          )}
+          {['admin', 'user'].includes(role) && <BtnKill bug={bug} />}
         </div>
       </div>
       <div className="card-body bg-white text-dark">
@@ -105,7 +113,7 @@ const BugDetail = ({ selectedBugID }) => {
               </div>
               <div className="text-primary">
                 <em>{'@'}</em>
-                {getPersonByID(authorID)?.username}
+                {peopleList.find((person) => person.id === authorID).username}
               </div>
             </div>
           </li>

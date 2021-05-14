@@ -8,8 +8,12 @@ export const getBugList = (id, role) => {
     return axios.get(config.BACKEND + '/bugs').then((res) => {
       return res.data
     })
-  } else {
+  } else if (role === 'staff') {
     return axios.get(config.BACKEND + '/bugs?staffID=' + id).then((res) => {
+      return res.data
+    })
+  } else if (role === 'user') {
+    return axios.get(config.BACKEND + '/bugs?userID=' + id).then((res) => {
       return res.data
     })
   }
@@ -41,8 +45,7 @@ export const updateBug = (bugID, authorID, content, oldUpdates) => {
         authorID: authorID
       }
     ]
-  }
-  )
+  })
 }
 
 export const forwardBug = (bugID, authorID, newStaffID, oldUpdates, username) => {

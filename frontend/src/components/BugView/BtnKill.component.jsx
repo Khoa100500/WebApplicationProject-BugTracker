@@ -2,7 +2,7 @@ import { killBug } from '../../services/bug.service'
 import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 
-const BtnKill = ({ bugID }) => {
+const BtnKill = ({ bug }) => {
   const { refreshBugList } = useContext(GlobalContext)
   return (
     <>
@@ -34,7 +34,7 @@ const BtnKill = ({ bugID }) => {
                 data-bs-dismiss="modal"
                 onClick={(e) => {
                   e.preventDefault()
-                  killBug(bugID).then(() => {
+                  killBug(bug.id).then(() => {
                     refreshBugList()
                   })
                 }}

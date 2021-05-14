@@ -8,15 +8,10 @@ const BtnForward = ({ bug }) => {
     peopleList,
     refreshBugList,
   } = useContext(GlobalContext)
-  const staffList = []
 
-  peopleList.forEach((person) => {
-    if (person.id !== bug?.staffID) {
-      if (person.role === 'staff') {
-        staffList.push(person)
-      }
-    }
-  })
+  const staffList = peopleList.filter(
+    (staff) => staff.id !== bug?.staffID && staff.role === 'staff'
+  )
 
   const [staffID, setStaffID] = useState(staffList[0]?.id)
 
@@ -26,7 +21,7 @@ const BtnForward = ({ bug }) => {
       id,
       staffID,
       bug.updates,
-      peopleList.filter((staff) => staff.id === staffID)[0].username
+      staffList.filter((staff) => staff.id === staffID)[0].username
     ).then(() => {
       refreshBugList()
     })

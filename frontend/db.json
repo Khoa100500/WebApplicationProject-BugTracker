@@ -1,4 +1,10 @@
 {
+  "project": {
+    "name": "Sample Project Name",
+    "description": "làm thế nào để có một giấc ngủ hiệu quả :)) description",
+    "createdDate": "2021-05-13 11:31:45",
+    "ownerID": "0"
+  },
   "bugs": [
     {
       "title": "bug2",
@@ -15,24 +21,10 @@
       "id": "c0UJC-G"
     },
     {
-      "title": "wwefwefwef",
-      "description": "fwefwefwefefwefef",
-      "userID": "7",
-      "staffID": "3",
-      "updates": [
-        {
-          "time": "2021-05-13 11:31:19",
-          "content": "Bug created",
-          "authorID": "0"
-        }
-      ],
-      "id": "EvtQOPQ"
-    },
-    {
       "title": "another simple bug",
       "description": "fsdfsdfsdfsdfsdf",
       "userID": "6",
-      "staffID": "5",
+      "staffID": "1",
       "updates": [
         {
           "time": "2021-05-13 11:31:45",
@@ -53,33 +45,14 @@
           "time": "2021-05-13 11:32:56",
           "content": "Bug is forwarded to staff5",
           "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 02:57:33",
+          "content": "Bug is forwarded to @chien",
+          "authorID": "0"
         }
       ],
       "id": "F9VlisT"
-    },
-    {
-      "title": "fsdgagsdfg",
-      "description": "sfdgsdfgsdfgsdfgds",
-      "userID": "6",
-      "staffID": "2",
-      "updates": [
-        {
-          "time": "2021-05-13 11:31:52",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:33:47",
-          "content": "Bug is forwarded to 1",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:36:23",
-          "content": "Bug is forwarded to @khoa",
-          "authorID": "0"
-        }
-      ],
-      "id": "bp48kFz"
     },
     {
       "title": "sửa bug hoài mệt vler",
@@ -104,7 +77,7 @@
       "title": "chu cha mẹ ơi con bug",
       "description": "sfdaqwfeqwefqvevfwevfwqevqwef\nvqw\nev",
       "userID": "6",
-      "staffID": "1",
+      "staffID": "3",
       "updates": [
         {
           "time": "2021-05-13 11:32:28",
@@ -135,6 +108,16 @@
           "time": "2021-05-13 11:37:50",
           "content": "forward gì lắm thế",
           "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 02:46:15",
+          "content": "Bug is forwarded to @chien",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 02:57:14",
+          "content": "Bug is forwarded to @tuan",
+          "authorID": "0"
         }
       ],
       "id": "RtVrlKW"
@@ -159,9 +142,106 @@
           "time": "2021-05-13 15:08:22",
           "content": "thôi bỏ đi, khỏi ngủ",
           "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 02:46:07",
+          "content": "Bug is forwarded to @chien",
+          "authorID": "0"
         }
       ],
       "id": "zmoGoTh"
+    },
+    {
+      "title": "bug evo",
+      "description": "sdfsdf",
+      "userID": "6",
+      "staffID": "4",
+      "updates": [
+        {
+          "time": "2021-05-14 02:59:36",
+          "content": "Bug created",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 02:59:41",
+          "content": "Bug is forwarded to @khoa",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:00:42",
+          "content": "Bug is forwarded to @khang",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:09:02",
+          "content": "Bug is forwarded to @chien",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:56:54",
+          "content": "Bug is forwarded to @khoa",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:56:58",
+          "content": "Bug is forwarded to @chien",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:57:00",
+          "content": "Bug is forwarded to @khoa",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:57:04",
+          "content": "Bug is forwarded to @kha",
+          "authorID": "0"
+        }
+      ],
+      "id": "EFnk3_e"
+    },
+    {
+      "title": "state flow",
+      "description": "state update",
+      "userID": "7",
+      "staffID": "1",
+      "updates": [
+        {
+          "time": "2021-05-14 03:47:12",
+          "content": "Bug created",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:47:20",
+          "content": "Bug is forwarded to @tuan",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:54:21",
+          "content": "Bug is forwarded to @chien",
+          "authorID": "0"
+        }
+      ],
+      "id": "UB36VTE"
+    },
+    {
+      "title": "gf",
+      "description": "sdfsdf",
+      "userID": "6",
+      "staffID": "2",
+      "updates": [
+        {
+          "time": "2021-05-14 03:49:16",
+          "content": "Bug created",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 03:49:35",
+          "content": "Bug is forwarded to @khoa",
+          "authorID": "0"
+        }
+      ],
+      "id": "lkJ-mfx"
     }
   ],
   "people": [

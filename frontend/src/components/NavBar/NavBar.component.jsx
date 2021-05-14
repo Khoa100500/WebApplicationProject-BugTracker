@@ -3,7 +3,7 @@ import { GlobalContext } from '../../context/GlobalContext'
 import { Link } from 'react-router-dom'
 
 const NavBar = () => {
-  const { username, role } = useContext(GlobalContext).user
+  const { name, role } = useContext(GlobalContext).user
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -15,28 +15,21 @@ const NavBar = () => {
           {['admin', 'staff', 'user'].includes(role) && (
             <li className="nav-item">
               <Link className="nav-link" to="/bugview">
-                BugView
-              </Link>
-            </li>
-          )}
-          {['admin'].includes(role) && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/staffview">
-                StaffView
+                Manage Bugs
               </Link>
             </li>
           )}
           {['admin'].includes(role) && (
             <li className="nav-item">
               <Link className="nav-link" to="/projectview">
-                ProjectView
+                Manage Project
               </Link>
             </li>
           )}
         </ul>
         <div>
           <span className="navbar-text">{`Logged in as`}</span>
-          <span className="text-light m-2">{username.toUpperCase()}</span>
+          <span className="text-light m-2">{name.toUpperCase()}</span>
           <button className="btn btn-outline-light">Logout</button>
         </div>
       </div>
