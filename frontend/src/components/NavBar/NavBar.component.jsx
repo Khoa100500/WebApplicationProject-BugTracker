@@ -6,7 +6,7 @@ const NavBar = () => {
   const { name, role } = useContext(GlobalContext).user
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           Group 5 [BugTracker]

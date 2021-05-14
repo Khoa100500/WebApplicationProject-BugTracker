@@ -118,6 +118,11 @@
           "time": "2021-05-14 02:57:14",
           "content": "Bug is forwarded to @tuan",
           "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 04:45:05",
+          "content": "thôi nhé\n",
+          "authorID": "0"
         }
       ],
       "id": "RtVrlKW"
@@ -242,6 +247,20 @@
         }
       ],
       "id": "lkJ-mfx"
+    },
+    {
+      "title": "simple bug",
+      "description": "efefefef",
+      "userID": "7",
+      "staffID": "2",
+      "updates": [
+        {
+          "time": "2021-05-14 05:16:17",
+          "content": "Bug created",
+          "authorID": "0"
+        }
+      ],
+      "id": "-nxSdI1"
     }
   ],
   "people": [

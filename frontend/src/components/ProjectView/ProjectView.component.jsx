@@ -1,42 +1,29 @@
-import { useContext, useState } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
+import { useState } from 'react'
 
-import ProjectDetail from './ProjectDetail.component'
 import StaffList from './StaffList.component'
 import PersonDetail from './PersonDetail.component'
 import UserList from './UserList.component'
 
 const ProjectView = () => {
-  const {
-    user: { id },
-    peopleList,
-    refreshBugList,
-  } = useContext(GlobalContext)
-
-  const [selectedPerson, setSelectedPerson] = useState()
-
-  const setSelectedID = (id) => {}
+  const [selectedPersonID, setSelectedPersonID] = useState()
 
   return (
     <div className="container pt-3">
-      <div className="row row-cols-3">
-        <div className="col">
-          <ProjectDetail />
-        </div>
-        <div className="col">
-          <StaffList
-            selectedPerson={selectedPerson}
-            setSelectedPerson={setSelectedPerson}
-          />
-        </div>
-        <div className="col-6">
-          <PersonDetail />
-        </div>
-        <div className="col">
+      <div className="row">
+        <div className="col-sm-3">
           <UserList
-            selectedPerson={selectedPerson}
-            setSelectedPerson={setSelectedPerson}
+            selectedPersonID={selectedPersonID}
+            setSelectedPersonID={setSelectedPersonID}
           />
+        </div>
+        <div className="col-sm-3">
+          <StaffList
+            selectedPersonID={selectedPersonID}
+            setSelectedPersonID={setSelectedPersonID}
+          />
+        </div>
+        <div className="col-sm-6">
+          <PersonDetail selectedPersonID={selectedPersonID} />
         </div>
       </div>
     </div>
