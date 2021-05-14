@@ -5,11 +5,7 @@ import EditPerson from './EditPerson.component'
 import DeletePerson from './DeletePerson.component'
 
 const PersonDetail = ({ selectedPersonID }) => {
-  const {
-    user: { role },
-    peopleList,
-    bugList,
-  } = useContext(GlobalContext)
+  const { peopleList, bugList } = useContext(GlobalContext)
 
   const person = peopleList.find((person) => person.id === selectedPersonID)
   const _bugList = bugList.filter(
@@ -21,8 +17,8 @@ const PersonDetail = ({ selectedPersonID }) => {
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Detail {person?.role}</h5>
         <div className="btn-group ">
-          <EditPerson />
-          <DeletePerson />
+          <EditPerson person={person} />
+          <DeletePerson person={person} bugList={_bugList} />
         </div>
       </div>
       <div className="card-body bg-white text-dark">
@@ -31,13 +27,16 @@ const PersonDetail = ({ selectedPersonID }) => {
             <strong>Name</strong>
           </label>
           <div className="col-10">
-            <input
-              readOnly
-              type="text"
-              id="titledetail"
-              className="form-control"
-              value={person?.name}
-            />
+            <div className="input-group">
+              <span className="input-group-text">@{person?.username}</span>
+              <input
+                readOnly
+                type="text"
+                id="userdetail"
+                className="form-control"
+                value={person?.name}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -51,9 +50,11 @@ const PersonDetail = ({ selectedPersonID }) => {
               </div>
               <div className="text-primary">
                 <em>{'@'}</em>
-                {person.role === 'user'
-                  ? peopleList.find((person) => person.id === staffID).username
-                  : peopleList.find((person) => person.id === userID).username}
+                {person?.role === 'user'
+                  ? peopleList.find((person) => person?.id === staffID)
+                      ?.username
+                  : peopleList.find((person) => person?.id === userID)
+                      ?.username}
               </div>
             </div>
           </li>

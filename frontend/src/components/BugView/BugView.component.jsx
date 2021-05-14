@@ -2,7 +2,6 @@ import BugList from './BugList.component'
 import BugDetail from './BugDetail.component'
 
 import { useState } from 'react'
-import './BugView.css'
 
 const BugView = () => {
   const [selectedBugID, setSelectedBugID] = useState()

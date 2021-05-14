@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
   const { name, role } = useContext(GlobalContext).user
@@ -14,16 +14,24 @@ const NavBar = () => {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           {['admin', 'staff', 'user'].includes(role) && (
             <li className="nav-item">
-              <Link className="nav-link" to="/bugview">
+              <NavLink
+                activeClassName="active"
+                className="nav-link"
+                to="/bugview"
+              >
                 Manage Bugs
-              </Link>
+              </NavLink>
             </li>
           )}
           {['admin'].includes(role) && (
             <li className="nav-item">
-              <Link className="nav-link" to="/projectview">
+              <NavLink
+                activeClassName="active"
+                className="nav-link"
+                to="/projectview"
+              >
                 Manage Project
-              </Link>
+              </NavLink>
             </li>
           )}
         </ul>

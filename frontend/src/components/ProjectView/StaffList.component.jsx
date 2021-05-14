@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
-import AddUser from './AddUser.component'
+import AddStaff from './AddStaff.component'
 
 const StaffList = ({ selectedPersonID, setSelectedPersonID }) => {
   const { peopleList } = useContext(GlobalContext)
@@ -9,7 +9,7 @@ const StaffList = ({ selectedPersonID, setSelectedPersonID }) => {
     <div className="card bg-primary text-white">
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Staff list</h5>
-        <AddUser />
+        <AddStaff />
       </div>
       <ul className="list-group list-group-flush">
         {staffList.map((user) => (
