@@ -154,11 +154,11 @@
       "id": "9bkFL8S"
     },
     {
-      "name": "Fake Staff",
-      "role": "staff",
+      "name": "Fake Customer",
+      "role": "user",
       "username": "fake",
-      "password": "sfgfgfgsfgdg",
-      "id": "mr13GNw"
+      "password": "",
+      "id": "mTyCuQX"
     }
   ]
 }

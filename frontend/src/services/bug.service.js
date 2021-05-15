@@ -3,7 +3,6 @@ import { API } from './auth.service'
 const getCurrentTime = () => new Date().toJSON().slice(0, 19).replace('T', ' ')
 
 export const getBugList = (id, role) => {
-  console.log(id, role)
   if (role === 'admin') {
     return API.get('/bugs').then((res) => {
       return res.data
