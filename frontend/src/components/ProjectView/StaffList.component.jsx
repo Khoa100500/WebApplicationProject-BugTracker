@@ -16,12 +16,12 @@ const StaffList = ({ selectedPersonID, setSelectedPersonID }) => {
           <li
             key={staff.id}
             className={
-              'list-group-item staff-select-none list-group-item-action' +
+              'list-group-item user-select-none list-group-item-action' +
               (staff.id === selectedPersonID ? ' active' : '')
             }
             onClick={() => setSelectedPersonID(staff.id)}
           >
-            <strong>#{staff.username}</strong>
+            <strong>@{staff.username}</strong>
             {' ' + staff.name}
           </li>
         ))}
