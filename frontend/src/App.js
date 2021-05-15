@@ -26,17 +26,16 @@ function App() {
           </Helmet>
           <ProjectView />
         </Route>
-        <Route path="/login">
+        <Route path="/login" component={Login}>
           <Helmet>
             <title>Log In</title>
           </Helmet>
-          <Login />
         </Route>
         <Route path="/">
           <Helmet>
-            <title>404</title>
+            <title>Default Page</title>
           </Helmet>
-          <h1>Search google 404 bạn nhé</h1>
+          <h1>Default Page</h1>
         </Route>
       </Switch>
 

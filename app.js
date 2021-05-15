@@ -10,7 +10,8 @@ app.use(cors({
 }))
 
 // Load routes
-require('./routes')(app)
+require('./bug.route')(app)
+require('./people.route')(app)
 
 // Start server
 const PORT = process.env.PORT || 3002
