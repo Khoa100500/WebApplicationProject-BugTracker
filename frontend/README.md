@@ -1,11 +1,5 @@
--> install dependencies: npm i
+## How to run:
 
--> start JSON server: npm run server
+Step 1: Download NodeJS : https://nodejs.org/en/download/
 
--> start React server: npm start
-
-folders:
-
-- components -> {ComponentName} -> {ComponentName.component.jsx} + {ComponentName.css}
-- context: {ContextName.js}
-- services: giống controller trong MVC
+Step 2: Open file `RUN.bat`
