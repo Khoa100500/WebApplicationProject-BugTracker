@@ -1,10 +1,17 @@
 import BugList from './BugList.component'
 import BugDetail from './BugDetail.component'
 
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { GlobalContext } from '../../context/GlobalContext'
 
 const BugView = () => {
   const [selectedBugID, setSelectedBugID] = useState()
+  const { refreshBugList, refreshPeopleList } = useContext(GlobalContext)
+
+  useEffect(() => {
+    refreshBugList()
+    refreshPeopleList()
+  }, [])
 
   return (
     <div className="container pt-3">

@@ -5,12 +5,22 @@ import { logout } from '../../services/auth.service'
 import { useHistory } from 'react-router'
 
 const NavBar = () => {
-  const { name, role } = useContext(GlobalContext).user
+  const {
+    user: { name, role },
+    setUser,
+  } = useContext(GlobalContext)
   const history = useHistory()
 
   const handleLogout = (e) => {
     e.preventDefault()
     logout()
+    setUser({
+      id: undefined,
+      role: undefined,
+      name: undefined,
+      username: undefined,
+      accessToken: undefined,
+    })
     history.push('/login')
   }
 

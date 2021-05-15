@@ -17,7 +17,6 @@ export const login = (username, password) => {
     .then((response) => {
       if (response.data.accessToken) {
         localStorage.setItem('user', JSON.stringify(response.data))
-        useContext(GlobalContext).setUser(response.data)
         setAuthToken(response.data.accessToken)
       }
       return response.data
@@ -26,6 +25,7 @@ export const login = (username, password) => {
 
 export const logout = () => {
   localStorage.removeItem('user');
+  
 }
 
 export const setAuthToken = (token) => {
@@ -40,18 +40,19 @@ export const PrivateRoute = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ location }) =>
-        user.accessToken ? (
-          children
-        ) : (
-          <Redirect
+      render={({ location }) => {
+        if (user.accessToken) {
+          return children
+        } else {
+          alert("Unauthorized access")
+          return <Redirect
             to={{
               pathname: "/login",
               state: { from: location }
             }}
           />
-        )
-      }
+        }
+      }}
     />
   );
 }

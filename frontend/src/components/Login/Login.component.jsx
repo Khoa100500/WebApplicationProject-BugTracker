@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useHistory } from 'react-router'
+import config from '../../config'
+import { GlobalContext } from '../../context/GlobalContext'
 import { login } from '../../services/auth.service'
 
 const Login = () => {
+  const { user, setUser, refreshBugList, refreshPeopleList } =
+    useContext(GlobalContext)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -15,17 +19,29 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault()
     setLoading(true)
-    login(username, password)
-      .then((res) => {
-        setLoading(false)
-        redirectToBugview()
+    if (config.disableLogin) {
+      setUser({
+        id: '0',
+        role: 'admin',
+        name: 'The Master',
+        username: 'master',
+        accessToken: 'myaccesstoken',
       })
-      .catch((err) => {
-        setLoading(false)
-        setUsername('')
-        setPassword('')
-        alert(`Failed to login: ${err}`)
-      })
+      redirectToBugview()
+    } else {
+      login(username, password)
+        .then((res) => {
+          setLoading(false)
+          setUser(res)
+          redirectToBugview()
+        })
+        .catch((err) => {
+          setLoading(false)
+          setUsername('')
+          setPassword('')
+          alert(`Failed to login: ${err}`)
+        })
+    }
   }
 
   return (

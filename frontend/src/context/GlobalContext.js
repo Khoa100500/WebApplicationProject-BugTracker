@@ -21,12 +21,14 @@ export const GlobalContextProvider = ({ children }) => {
   }, [])
 
   const refreshBugList = () => {
+    console.log('bug')
     getBugList(user.id, user.role)?.then((bugs) => {
       setBugList(bugs)
     })
   }
 
   const refreshPeopleList = () => {
+    console.log('people')
     getPeopleList()?.then((people) => {
       setPeopleList(people)
     })
