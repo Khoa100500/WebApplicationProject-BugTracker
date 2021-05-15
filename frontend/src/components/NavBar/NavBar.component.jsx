@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 import { NavLink } from 'react-router-dom'
-import { logout } from '../Login/auth'
+import { logout } from '../../services/auth.service'
 import { useHistory } from 'react-router'
 
 const NavBar = () => {
@@ -40,17 +40,6 @@ const NavBar = () => {
                 to="/projectview"
               >
                 Manage Project
-              </NavLink>
-            </li>
-          )}
-          {['admin', 'staff', 'user'].includes(role) && (
-            <li className="nav-item">
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to="/login"
-              >
-                Login
               </NavLink>
             </li>
           )}

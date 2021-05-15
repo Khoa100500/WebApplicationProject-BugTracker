@@ -1,15 +1,14 @@
-import axios from 'axios'
-import config from '../config'
+import { API } from './auth.service'
 import { killBug } from './bug.service'
 
 export const getPeopleList = () => {
-  return axios.get(config.BACKEND + '/people').then((res) => {
+  return API.get('/people').then((res) => {
     return res.data
   })
 }
 
 const addPerson = (role, username, password, name) => {
-  return axios.post(config.BACKEND + '/people', {
+  return API.post('/people', {
     name, role, username, password
   }).then((res) => res.data)
 }
@@ -24,11 +23,11 @@ export const addStaff = (username, password, name) => {
 
 export const deletePerson = (id, bugList) => {
   const promises = bugList.map(bug => killBug(bug.id))
-  return Promise.all(promises).then(() => axios.delete(config.BACKEND + '/people/' + id))
+  return Promise.all(promises).then(() => API.delete('/people/' + id))
 }
 
 export const updatePerson = (id, name, role, username, password) => {
-  return axios.patch(config.BACKEND + '/people/' + id, {
+  return API.patch('/people/' + id, {
     name, role, username, password
   })
 }

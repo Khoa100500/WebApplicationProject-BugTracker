@@ -1,55 +1,30 @@
-// mport { useContext } from 'react'
-// import { GlobalContext } from '../../context/GlobalContext'
-
-// .....
-
-// const {setUser} = useContext(GlobalContext)
-
-// .....
-
-// setUser({
-//   id: '3', // ID string: cái này bên backend gửi về
-//   role: 'staff', // ['admin', 'staff', 'user']
-//   name: 'The Master', // Full name
-//   username: 'master' // Username để hiện thị trong Bug Detail
-// })
-
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router'
-import { login, getAuthHeader } from './auth'
-import { GlobalContext } from '../../context/GlobalContext'
+import { login } from '../../services/auth.service'
+
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
-  const redirectToCourses = () => {
-    history.push('/courses')
+  const redirectToBugview = () => {
+    history.push('/bugview')
   }
-
-  useEffect(() => {
-    const header = getAuthHeader()
-    if (header['x-access-token']) {
-      redirectToCourses()
-    }
-  }, [])
 
   const handleLogin = (e) => {
     e.preventDefault()
     setLoading(true)
     login(username, password)
       .then((res) => {
-        console.log('Welcome', res.studentName)
         setLoading(false)
-        redirectToCourses()
+        redirectToBugview()
       })
       .catch((err) => {
-        console.log(err)
         setLoading(false)
         setUsername('')
         setPassword('')
-        alert('Failed to login')
+        alert(`Failed to login: ${err}`)
       })
   }
 

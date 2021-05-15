@@ -1,26 +1,25 @@
-import axios from 'axios'
-import config from '../config'
+import { API } from './auth.service'
 
 const getCurrentTime = () => new Date().toJSON().slice(0, 19).replace('T', ' ')
 
 export const getBugList = (id, role) => {
   if (role === 'admin') {
-    return axios.get(config.BACKEND + '/bugs').then((res) => {
+    return API.get('/bugs').then((res) => {
       return res.data
     })
   } else if (role === 'staff') {
-    return axios.get(config.BACKEND + '/bugs?staffID=' + id).then((res) => {
+    return API.get('/bugs?staffID=' + id).then((res) => {
       return res.data
     })
   } else if (role === 'user') {
-    return axios.get(config.BACKEND + '/bugs?userID=' + id).then((res) => {
+    return API.get('/bugs?userID=' + id).then((res) => {
       return res.data
     })
   }
 }
 
 export const addBug = (authorID, title, description, userID, staffID) => {
-  return axios.post(config.BACKEND + '/bugs', {
+  return API.post('/bugs', {
     title,
     description,
     userID: userID,
@@ -36,7 +35,7 @@ export const addBug = (authorID, title, description, userID, staffID) => {
 }
 
 export const updateBug = (bugID, authorID, content, oldUpdates) => {
-  return axios.patch(config.BACKEND + '/bugs/' + bugID, {
+  return API.patch('/bugs/' + bugID, {
     updates: [
       ...oldUpdates,
       {
@@ -49,13 +48,11 @@ export const updateBug = (bugID, authorID, content, oldUpdates) => {
 }
 
 export const forwardBug = (bugID, authorID, newStaffID, oldUpdates, username) => {
-  return axios.patch(config.BACKEND + '/bugs/' + bugID, {
-    staffID: newStaffID,
-  }).then(() => {
+  return API.patch('/bugs/' + bugID, { staffID: newStaffID }).then(() => {
     return updateBug(bugID, authorID, 'Bug is forwarded to @' + username, oldUpdates)
   })
 }
 
 export const killBug = (id) => {
-  return axios.delete(config.BACKEND + '/bugs/' + id)
+  return API.delete('/bugs/' + id)
 }

@@ -6,10 +6,11 @@ export const GlobalContext = createContext()
 
 export const GlobalContextProvider = ({ children }) => {
   const [user, setUser] = useState({
-    id: '0',
-    role: 'admin',
-    name: 'The Master',
-    username: 'master'
+    id: undefined,
+    role: undefined,
+    name: undefined,
+    username: undefined,
+    accessToken: undefined
   })
   const [bugList, setBugList] = useState([])
   const [peopleList, setPeopleList] = useState([])
@@ -20,13 +21,13 @@ export const GlobalContextProvider = ({ children }) => {
   }, [])
 
   const refreshBugList = () => {
-    getBugList(user.id, user.role).then((bugs) => {
+    getBugList(user.id, user.role)?.then((bugs) => {
       setBugList(bugs)
     })
   }
 
   const refreshPeopleList = () => {
-    getPeopleList().then((people) => {
+    getPeopleList()?.then((people) => {
       setPeopleList(people)
     })
   }
