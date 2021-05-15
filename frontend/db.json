@@ -1,246 +1,98 @@
 {
   "bugs": [
     {
-      "title": "bug2",
-      "description": "32323232323",
-      "userID": "6",
+      "title": "google search engine crashed",
+      "description": "around 10.p.m\nVietnamese users cannot query search\nthis bug is servere",
+      "userID": "rp_ccPC",
       "staffID": "1",
       "updates": [
         {
-          "time": "2021-05-13 11:30:56",
+          "time": "2021-05-14 13:49:55",
           "content": "Bug created",
           "authorID": "0"
         }
       ],
-      "id": "c0UJC-G"
+      "id": 1
     },
     {
-      "title": "another simple bug",
-      "description": "fsdfsdfsdfsdfsdf",
-      "userID": "6",
-      "staffID": "1",
-      "updates": [
-        {
-          "time": "2021-05-13 11:31:45",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:32:45",
-          "content": "update nhẹ",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:32:51",
-          "content": "ngon",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:32:56",
-          "content": "Bug is forwarded to staff5",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 02:57:33",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        }
-      ],
-      "id": "F9VlisT"
-    },
-    {
-      "title": "sửa bug hoài mệt vler",
-      "description": "fsdfsdfsdfsdfsdfdfs",
-      "userID": "7",
-      "staffID": "1",
-      "updates": [
-        {
-          "time": "2021-05-13 11:32:08",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:34:04",
-          "content": "Bug is forwarded to staff ID 1",
-          "authorID": "0"
-        }
-      ],
-      "id": "mtdjBuj"
-    },
-    {
-      "title": "chu cha mẹ ơi con bug",
-      "description": "sfdaqwfeqwefqvevfwevfwqevqwef\nvqw\nev",
-      "userID": "6",
-      "staffID": "3",
-      "updates": [
-        {
-          "time": "2021-05-13 11:32:28",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:37:28",
-          "content": "Bug is forwarded to @khoa",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:37:34",
-          "content": "Bug is forwarded to @kha",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:37:38",
-          "content": "Bug is forwarded to @tuan",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:37:41",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 11:37:50",
-          "content": "forward gì lắm thế",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 02:46:15",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 02:57:14",
-          "content": "Bug is forwarded to @tuan",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 04:45:05",
-          "content": "thôi nhé\n",
-          "authorID": "0"
-        }
-      ],
-      "id": "RtVrlKW"
-    },
-    {
-      "title": "bug trc khi ngủ",
-      "description": "ngủ đết đc",
-      "userID": "7",
-      "staffID": "1",
-      "updates": [
-        {
-          "time": "2021-05-13 15:07:49",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 15:08:05",
-          "content": "2 giờ rồi mà vẫn chưa ngủ\n",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-13 15:08:22",
-          "content": "thôi bỏ đi, khỏi ngủ",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 02:46:07",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        }
-      ],
-      "id": "zmoGoTh"
-    },
-    {
-      "title": "bug evo",
-      "description": "sdfsdf",
-      "userID": "6",
-      "staffID": "4",
-      "updates": [
-        {
-          "time": "2021-05-14 02:59:36",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 02:59:41",
-          "content": "Bug is forwarded to @khoa",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:00:42",
-          "content": "Bug is forwarded to @khang",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:09:02",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:56:54",
-          "content": "Bug is forwarded to @khoa",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:56:58",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:57:00",
-          "content": "Bug is forwarded to @khoa",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:57:04",
-          "content": "Bug is forwarded to @kha",
-          "authorID": "0"
-        }
-      ],
-      "id": "EFnk3_e"
-    },
-    {
-      "title": "state flow",
-      "description": "state update",
-      "userID": "7",
-      "staffID": "1",
-      "updates": [
-        {
-          "time": "2021-05-14 03:47:12",
-          "content": "Bug created",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:47:20",
-          "content": "Bug is forwarded to @tuan",
-          "authorID": "0"
-        },
-        {
-          "time": "2021-05-14 03:54:21",
-          "content": "Bug is forwarded to @chien",
-          "authorID": "0"
-        }
-      ],
-      "id": "UB36VTE"
-    },
-    {
-      "title": "gf",
-      "description": "sdfsdf",
-      "userID": "6",
+      "title": "users cannot add new friend",
+      "description": "Many facebook users in Asia are experienceing this problem",
+      "userID": "SpM4sbb",
       "staffID": "2",
       "updates": [
         {
-          "time": "2021-05-14 03:49:16",
+          "time": "2021-05-14 13:51:02",
+          "content": "Bug created",
+          "authorID": "0"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "title": "Lecturers cannot update score",
+      "description": "New scores are being updated as 0",
+      "userID": "9bkFL8S",
+      "staffID": "4",
+      "updates": [
+        {
+          "time": "2021-05-14 13:51:54",
           "content": "Bug created",
           "authorID": "0"
         },
         {
-          "time": "2021-05-14 03:49:35",
-          "content": "Bug is forwarded to @khoa",
+          "time": "2021-05-14 13:56:24",
+          "content": "the bug has been partially fixed",
+          "authorID": "0"
+        },
+        {
+          "time": "2021-05-14 13:56:51",
+          "content": "Bug is forwarded to @kha",
           "authorID": "0"
         }
       ],
-      "id": "lkJ-mfx"
+      "id": 3
+    },
+    {
+      "title": "group chat is lagging",
+      "description": "",
+      "userID": "SpM4sbb",
+      "staffID": "4",
+      "updates": [
+        {
+          "time": "2021-05-14 13:52:21",
+          "content": "Bug created",
+          "authorID": "0"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "title": "Cannot view student profile",
+      "description": "",
+      "userID": "9bkFL8S",
+      "staffID": "1",
+      "updates": [
+        {
+          "time": "2021-05-14 13:53:17",
+          "content": "Bug created",
+          "authorID": "0"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "title": "google accounts deleted randomly",
+      "description": "",
+      "userID": "rp_ccPC",
+      "staffID": "5",
+      "updates": [
+        {
+          "time": "2021-05-14 13:53:52",
+          "content": "Bug created",
+          "authorID": "0"
+        }
+      ],
+      "id": 6
     }
   ],
   "people": [
@@ -252,52 +104,61 @@
     },
     {
       "id": "1",
-      "name": "Chien",
+      "name": "Hà Minh Chiến",
       "role": "staff",
       "username": "chien"
     },
     {
       "id": "2",
-      "name": "Khoa",
+      "name": "Phạm Đăng Khoa",
       "role": "staff",
       "username": "khoa"
     },
     {
       "id": "3",
-      "name": "Tuan",
+      "name": "Phạm Hàng Anh Tuấn",
       "role": "staff",
       "username": "tuan"
     },
     {
       "id": "4",
-      "name": "Kha",
+      "name": "Võ Công Kha",
       "role": "staff",
       "username": "kha"
     },
     {
       "id": "5",
-      "name": "Khang",
+      "name": "Đặng Đình Khang",
       "role": "staff",
       "username": "khango"
     },
     {
-      "id": "6",
-      "name": "Company Facebook",
+      "name": "Google Company",
       "role": "user",
-      "username": "facebook"
+      "username": "google",
+      "password": "google",
+      "id": "rp_ccPC"
     },
     {
-      "id": "7",
-      "name": "Company Google",
+      "name": "Facebook Company",
       "role": "user",
-      "username": "google"
+      "username": "facebook",
+      "password": "",
+      "id": "SpM4sbb"
     },
     {
-      "name": "anonyr",
+      "name": "International University",
+      "role": "user",
+      "username": "hcmiu",
+      "password": "sefsdfsdf",
+      "id": "9bkFL8S"
+    },
+    {
+      "name": "Fake Staff",
       "role": "staff",
-      "username": "mousy",
-      "password": "hahat",
-      "id": "nRbqTob"
+      "username": "fake",
+      "password": "sfgfgfgsfgdg",
+      "id": "mr13GNw"
     }
   ]
 }
