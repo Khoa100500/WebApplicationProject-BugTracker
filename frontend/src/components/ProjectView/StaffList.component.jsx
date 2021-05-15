@@ -12,17 +12,17 @@ const StaffList = ({ selectedPersonID, setSelectedPersonID }) => {
         <AddStaff />
       </div>
       <ul className="list-group list-group-flush">
-        {staffList.map((user) => (
+        {staffList.map((staff) => (
           <li
-            key={user.id}
+            key={staff.id}
             className={
-              'list-group-item user-select-none list-group-item-action' +
-              (user.id === selectedPersonID ? ' active' : '')
+              'list-group-item staff-select-none list-group-item-action' +
+              (staff.id === selectedPersonID ? ' active' : '')
             }
-            onClick={() => setSelectedPersonID(user.id)}
+            onClick={() => setSelectedPersonID(staff.id)}
           >
-            <strong>#{user.id}</strong>
-            {' ' + user.name}
+            <strong>#{staff.username}</strong>
+            {' ' + staff.name}
           </li>
         ))}
       </ul>

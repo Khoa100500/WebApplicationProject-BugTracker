@@ -21,7 +21,7 @@ const UserList = ({ selectedPersonID, setSelectedPersonID }) => {
             }
             onClick={() => setSelectedPersonID(user.id)}
           >
-            <strong>#{user.id}</strong>
+            <strong>#{user.username}</strong>
             {' ' + user.name}
           </li>
         ))}
