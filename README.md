@@ -1,11 +1,19 @@
-# WebApplicationProject-BugTracker
+# Two modes
 
-Run backend server:
+## 1. Frontend-only with JSON-server (authentication is disabled):
 
-- Install dependencies: npm install
-- Run server: npm start
+- cd frontend/
+- npm start
 
-Run frontend server:
+## 2. Fullstack with MySQL:
 
-- Install dependencies: npm install
-- Run server: npm start
+### Build optimized frontend for Express static serving
+
+- cd frontend/
+- npm run build
+- cd ..
+
+### Run Express server
+
+- cd backend/
+- npm start

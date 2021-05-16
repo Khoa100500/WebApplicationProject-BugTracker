@@ -18,8 +18,7 @@
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"json-server --watch db.json --port 5000\"",
-    "build": "react-scripts build",
-    "server": "json-server --watch db.json --port 5000"
+    "build": "rmdir /Q /S ..\\backend\\build & react-scripts build & move /Y build ..\\backend"
   },
   "eslintConfig": {
     "extends": [

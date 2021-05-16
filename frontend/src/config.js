@@ -1,4 +1,5 @@
 export default {
-  BACKEND: 'http://localhost:5000',
+  BACKEND: (process.env.NODE_ENV == 'production') ? '/api' : 'http://localhost:5000',
+  // disableLogin: (process.env.NODE_ENV == 'production') ? false : true
   disableLogin: true
 }
