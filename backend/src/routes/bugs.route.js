@@ -19,7 +19,13 @@ module.exports = (app) => {
   })
 
   app.patch('/bugs/:bugID', (req, res) => {
-    controllers.updateBugByID(req.params.bugID, req.body, res)
+    const { updates, staffID } = req.body
+    const bugID = req.params.bugID
+    if (staffID) {
+      controllers.forwardBugByID(bugID, staffID, res)
+    } else {
+      controllers.updateBugByID(bugID, updates, res)
+    }
   })
 
   app.delete('/bugs/:bugID', (req, res) => {

@@ -24,9 +24,12 @@ exports.createPerson = (requestBody, response) => {
 }
 
 exports.updatePersonByID = (id, requestBody, response) => {
-  delete_sql = 'DELETE FROM people WHERE id = UUID_TO_BIN(?)'
-  connection.query(delete_sql, [id]).then(() => {
-    this.createPerson(requestBody, response)
+  const { name, role, username, password } = requestBody
+  const role_id = ['admin', 'staff', 'user'].indexOf(role) + 1
+
+  update_sql = 'UPDATE people SET p_name=?, role_id=?, pass_word=?, user_name=? WHERE id = UUID_TO_BIN(?)'
+  connection.query(update_sql, [name, role_id, password, username, id]).then(() => {
+    response.end()
   })
 }
 

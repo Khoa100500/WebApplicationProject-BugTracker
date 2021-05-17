@@ -1,21 +1,42 @@
 const connection = require('./database')
 const { v4: uuidv4 } = require('uuid')
 
+const formatTime = (dt) => {
+  let current_date = dt.getDate()
+  let current_month = dt.getMonth() + 1
+  let current_year = dt.getFullYear()
+  let current_hrs = dt.getHours()
+  let current_mins = dt.getMinutes()
+  let current_secs = dt.getSeconds()
+  current_date = current_date < 10 ? '0' + current_date : current_date
+  current_month = current_month < 10 ? '0' + current_month : current_month
+  current_hrs = current_hrs < 10 ? '0' + current_hrs : current_hrs
+  current_mins = current_mins < 10 ? '0' + current_mins : current_mins
+  current_secs = current_secs < 10 ? '0' + current_secs : current_secs
+  return current_year + '-' + current_month + '-' + current_date + ' ' + current_hrs + ':' + current_mins + ':' + current_secs
+}
 
 const getUpdatesByBugID = (id) => {
   const sql =
-    `SELECT update_time as time, content, authorID
+    `SELECT update_time as time, content, BIN_TO_UUID(authorID) as authorID
     FROM bug_update WHERE bug_id = UUID_TO_BIN(?)`
   return connection.query(sql, [id])
 }
 
+const fixSQLTime = (updates) => updates.map(update => ({
+  ...update,
+  time: formatTime(update.time)
+}))
+
 const includeBugUpdates = (bugs, response) => {
-  updates = bugs.map(bug => getUpdatesByBugID(bug.id))
-  Promise.all(updates).then(result => {
-    response.json(bugs.map((bug, index) => ({
-      ...bug,
-      updates: result[index][0]
-    })))
+  const fullBugs = bugs.map(bug => getUpdatesByBugID(bug.id))
+  Promise.all(fullBugs).then(fullBug => {
+    response.json(bugs.map((bug, index) => {
+      return {
+        ...bug,
+        updates: fixSQLTime(fullBug[index][0])
+      }
+    }))
   })
 }
 
@@ -84,8 +105,7 @@ exports.createBug = (requestBody, response) => {
   })
 }
 
-exports.updateBugByID = (id, requestBody, response) => {
-  const { updates } = requestBody
+exports.updateBugByID = (id, updates, response) => {
   delete_sql = 'DELETE FROM bug_update WHERE bug_id = UUID_TO_BIN(?)'
   insert_sql = 'INSERT INTO bug_update(bug_id, content, update_time, authorID) VALUES (UUID_TO_BIN(?), ?, ?, UUID_TO_BIN(?))'
   connection.query(delete_sql, [id]).then(() => {
@@ -97,8 +117,17 @@ exports.updateBugByID = (id, requestBody, response) => {
   })
 }
 
-exports.deleteBugByID = (id, response) => {
-  connection.query('UPDATE bug_report SET bug_status = 1 WHERE bug_id = UUID_TO_BIN(?)', [id]).then(() => {
+exports.forwardBugByID = (id, staffID, response) => {
+  update_sql = 'UPDATE work_on SET staffID=UUID_TO_BIN(?) WHERE bug_id = UUID_TO_BIN(?)'
+  connection.query(update_sql, [staffID, id]).then(() => {
     response.end()
+  })
+}
+
+exports.deleteBugByID = (id, response) => {
+  connection.query('DELETE FROM work_on WHERE bug_id = UUID_TO_BIN(?)', [id]).then(() => {
+    connection.query('DELETE FROM bug_report WHERE bug_id = UUID_TO_BIN(?)', [id]).then(() => {
+      response.end()
+    })
   })
 }

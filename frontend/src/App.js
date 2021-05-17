@@ -7,9 +7,13 @@ import Login from './components/Login/Login.component'
 import { setAuthToken, PrivateRoute } from './services/auth.service'
 
 import './App.css'
+import { useContext } from 'react';
+import { GlobalContext } from './context/GlobalContext';
 
 
 function App() {
+  const { setUser } = useContext(GlobalContext)
+
   return (
     <>
       <Switch>
@@ -31,6 +35,7 @@ function App() {
           const user = JSON.parse(localStorage.getItem('user'))
           if (user && user.accessToken) {
             setAuthToken(user.accessToken)
+            setUser(user)
             return <Redirect
               to={{
                 pathname: "/bugview",

@@ -29,7 +29,14 @@ const BtnAdd = () => {
   const [staffID, setStaffID] = useState(staffList[0]?.id)
 
   const handleSubmit = (e) => {
-    addBug(id, title, description, userID, staffID).then(() => {
+    addBug(
+      id,
+      title,
+      description,
+      userID,
+      staffID,
+      staffList.filter((staff) => staff.id === staffID)[0].username
+    ).then(() => {
       refreshBugList()
     })
   }

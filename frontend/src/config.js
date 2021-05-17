@@ -1,5 +1,6 @@
+const isProduction = process.env.NODE_ENV == 'production'
+
 export default {
-  BACKEND: (process.env.NODE_ENV == 'production') ? '/api' : 'http://localhost:5000',
-  // disableLogin: (process.env.NODE_ENV == 'production') ? false : true
-  disableLogin: true
+  BACKEND: isProduction ? '/api' : 'http://localhost:5000',
+  disableLogin: isProduction ? false : true
 }

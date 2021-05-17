@@ -44,10 +44,7 @@ const PersonDetail = ({ selectedPersonID }) => {
         {_bugList?.map(({ id, userID, staffID, title }) => (
           <li key={id} className="list-group-item">
             <div className="d-flex justify-content-between">
-              <div>
-                <strong>#{id}</strong>
-                {' ' + title}
-              </div>
+              <div>{title}</div>
               <div className="text-primary">
                 <em>{'@'}</em>
                 {person?.role === 'user'

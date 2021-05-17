@@ -4,6 +4,10 @@ import BtnKill from './BtnKill.component'
 import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 
+const formatTime = (sqlTime) => {
+  return sqlTime.slice(0, 19).replace('T', ' ')
+}
+
 const BugDetail = ({ selectedBugID }) => {
   const {
     user: { role },
@@ -106,12 +110,13 @@ const BugDetail = ({ selectedBugID }) => {
           <li key={index} className="list-group-item">
             <div className="d-flex justify-content-between">
               <div>
-                <strong>{time}</strong>
+                <strong>{formatTime(time)}</strong>
                 {' ' + content}
               </div>
               <div className="text-primary">
                 <em>{'@'}</em>
-                {peopleList.find((person) => person.id === authorID).username}
+                {peopleList.find((person) => person.id === authorID)
+                  ?.username ?? '[deleted]'}
               </div>
             </div>
           </li>
