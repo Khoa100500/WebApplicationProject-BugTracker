@@ -6,26 +6,23 @@ module.exports = (app) => {
   app.get('/bugs', (req, res) => {
     const { staffID, userID } = req.query
     if (staffID) {
-      res.json(controllers.getBugsByStaffID(staffID))
+      controllers.getBugsByStaffID(staffID, res)
     } else if (userID) {
-      res.json(controllers.getBugsByUserID(userID))
+      controllers.getBugsByUserID(userID, res)
     } else {
-      res.json(controllers.getBugs())
+      controllers.getBugs(res)
     }
   })
 
   app.post('/bugs', (req, res) => {
-    controllers.createBug(req.body)
-    res.end()
+    controllers.createBug(req.body, res)
   })
 
   app.patch('/bugs/:bugID', (req, res) => {
-    console.log("not implemented patch bugs yet")
-    res.end()
+    controllers.updateBugByID(req.params.bugID, req.body, res)
   })
 
   app.delete('/bugs/:bugID', (req, res) => {
-    controllers.deleteBugByID(req.params.bugID)
-    res.end()
+    controllers.deleteBugByID(req.params.bugID, res)
   })
 }

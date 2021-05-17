@@ -24,8 +24,7 @@ const BugList = ({ selectedBugID, setSelectedBugID }) => {
             }
             onClick={() => setSelectedBugID(bug.id)}
           >
-            <strong>#{bug.id}</strong>
-            {' ' + bug.title}
+            {bug.title}
           </li>
         ))}
       </ul>

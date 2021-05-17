@@ -30,9 +30,7 @@ const BugDetail = ({ selectedBugID }) => {
   return (
     <div className="card bg-primary text-light">
       <div className="card-header d-flex justify-content-between align-items-end">
-        <h5>
-          Bug <strong>#{bug?.id}</strong>
-        </h5>
+        <h5>Bug detail</h5>
         <div className="btn-group ">
           {['admin', 'staff'].includes(role) && <BtnUpdate bug={bug} />}
           {['admin', 'staff'].includes(role) && <BtnForward bug={bug} />}

@@ -8,7 +8,7 @@ app.use(express.static(config.PUBLIC_DIR))
 
 // Load routes
 apiRouter = express.Router()
-require('./routes/bug.route')(apiRouter)
+require('./routes/bugs.route')(apiRouter)
 require('./routes/people.route')(apiRouter)
 
 app.use('/api', apiRouter)
