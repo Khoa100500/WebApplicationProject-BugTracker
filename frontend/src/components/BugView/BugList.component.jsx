@@ -2,6 +2,8 @@ import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 import BtnAdd from './BtnAdd.component'
 
+import './BugList.css'
+
 const BugList = ({ selectedBugID, setSelectedBugID }) => {
   const {
     user: { role },

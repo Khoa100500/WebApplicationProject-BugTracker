@@ -36,9 +36,9 @@ const BugDetail = ({ selectedBugID }) => {
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Bug detail</h5>
         <div className="btn-group ">
-          {['admin', 'staff'].includes(role) && <BtnUpdate bug={bug} />}
-          {['admin', 'staff'].includes(role) && <BtnForward bug={bug} />}
-          {['admin', 'user'].includes(role) && <BtnKill bug={bug} />}
+          {bug && ['admin', 'staff'].includes(role) && <BtnUpdate bug={bug} />}
+          {bug && ['admin', 'staff'].includes(role) && <BtnForward bug={bug} />}
+          {bug && ['admin', 'user'].includes(role) && <BtnKill bug={bug} />}
         </div>
       </div>
       <div className="card-body bg-white text-dark">

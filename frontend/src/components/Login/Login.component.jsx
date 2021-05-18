@@ -20,13 +20,15 @@ const Login = () => {
     e.preventDefault()
     setLoading(true)
     if (config.disableLogin) {
-      setUser({
+      const fake_user = {
         id: '0',
         role: 'admin',
         name: 'The Master',
         username: 'master',
         accessToken: 'myaccesstoken',
-      })
+      }
+      setUser(fake_user)
+      localStorage.setItem('user', JSON.stringify(fake_user))
       redirectToBugview()
     } else {
       login(username, password)

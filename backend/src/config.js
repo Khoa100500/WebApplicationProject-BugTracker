@@ -1,5 +1,7 @@
+const path = require('path')
+
 module.exports = {
-  PUBLIC_DIR: process.cwd() + '\\build',
+  PUBLIC_DIR: path.join(process.cwd(), 'build'),
   MYSQL_CONFIG: {
     host: 'dbproject.3utilities.com',
     user: 'khoadeptrai',

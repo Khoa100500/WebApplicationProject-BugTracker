@@ -109,7 +109,7 @@ exports.updateBugByID = (id, updates, response) => {
   delete_sql = 'DELETE FROM bug_update WHERE bug_id = UUID_TO_BIN(?)'
   insert_sql = 'INSERT INTO bug_update(bug_id, content, update_time, authorID) VALUES (UUID_TO_BIN(?), ?, ?, UUID_TO_BIN(?))'
   connection.query(delete_sql, [id]).then(() => {
-    promises = updates.map(({ content, time, authorID }) =>
+    const promises = updates.map(({ content, time, authorID }) =>
       connection.query(insert_sql, [id, content, time, authorID]))
     Promise.all(promises).then(() => {
       response.end()

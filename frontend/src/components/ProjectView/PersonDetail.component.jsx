@@ -17,8 +17,8 @@ const PersonDetail = ({ selectedPersonID }) => {
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Detail {person?.role}</h5>
         <div className="btn-group ">
-          <EditPerson person={person} />
-          <DeletePerson person={person} bugList={_bugList} />
+          {person && <EditPerson person={person} />}
+          {person && <DeletePerson person={person} bugList={_bugList} />}
         </div>
       </div>
       <div className="card-body bg-white text-dark">

@@ -25,7 +25,6 @@ export const login = (username, password) => {
 
 export const logout = () => {
   localStorage.removeItem('user');
-  
 }
 
 export const setAuthToken = (token) => {
@@ -36,12 +35,20 @@ export const setAuthToken = (token) => {
 }
 
 export const PrivateRoute = ({ children, ...rest }) => {
-  let { user } = useContext(GlobalContext);
+  let { user, setUser, refreshBugList, refreshPeopleList } = useContext(GlobalContext);
+  if (!user?.accessToken) {
+    user = JSON.parse(localStorage.getItem('user'))
+  }
   return (
     <Route
       {...rest}
       render={({ location }) => {
-        if (user.accessToken) {
+        if (user?.accessToken) {
+          setAuthToken(user.accessToken)
+          setUser(user, () => {
+            refreshBugList()
+            refreshPeopleList()
+          })
           return children
         } else {
           alert("Unauthorized access")

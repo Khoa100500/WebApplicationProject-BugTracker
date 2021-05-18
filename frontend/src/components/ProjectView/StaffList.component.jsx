@@ -2,6 +2,8 @@ import { useContext } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 import AddStaff from './AddStaff.component'
 
+import './StaffList.css'
+
 const StaffList = ({ selectedPersonID, setSelectedPersonID }) => {
   const { peopleList } = useContext(GlobalContext)
   const staffList = peopleList.filter((person) => person.role === 'staff')

@@ -35,7 +35,7 @@ const BtnAdd = () => {
       description,
       userID,
       staffID,
-      staffList.filter((staff) => staff.id === staffID)[0].username
+      staffList.find((staff) => staff.id === staffID).username
     ).then(() => {
       refreshBugList()
     })

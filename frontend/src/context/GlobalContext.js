@@ -21,13 +21,13 @@ export const GlobalContextProvider = ({ children }) => {
   }, [])
 
   const refreshBugList = () => {
-    getBugList(user.id, user.role)?.then((bugs) => {
+    return getBugList(user.id, user.role)?.then((bugs) => {
       setBugList(bugs)
     })
   }
 
   const refreshPeopleList = () => {
-    getPeopleList()?.then((people) => {
+    return getPeopleList()?.then((people) => {
       setPeopleList(people)
     })
   }
