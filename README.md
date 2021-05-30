@@ -1,19 +1,10 @@
-# Two modes
+install global dependency:
+npm i -g nodemon
 
-## 1. Frontend-only with JSON-server (authentication is disabled):
+chạy backend trước:
+npm start
 
-- cd frontend/
-- npm start
+note: đổi database trong file backend/src/config.js
 
-## 2. Fullstack with MySQL:
-
-### Build optimized frontend for Express static serving
-
-- cd frontend/
-- npm run build
-- cd ..
-
-### Run Express server
-
-- cd backend/
-- npm start
+chạy frontend sau:
+npm start

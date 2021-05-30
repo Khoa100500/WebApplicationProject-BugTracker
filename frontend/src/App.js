@@ -1,13 +1,13 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { setAuthToken, PrivateRoute } from './services/auth.service'
+import { setAuthToken, PrivateRoute } from './services/auth'
 import { useContext } from 'react';
 import { GlobalContext } from './context/GlobalContext';
 
-import BugView from './components/BugView/BugView.component';
-import NavBar from './components/NavBar/NavBar.component'
-import ProjectView from './components/ProjectView/ProjectView.component'
-import Login from './components/Login/Login.component'
+import BugView from './components/BugView/BugView';
+import NavBar from './components/NavBar/NavBar'
+import ProjectView from './components/ProjectView/ProjectView'
+import Login from './components/Login/Login'
 
 
 function App() {

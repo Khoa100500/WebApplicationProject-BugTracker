@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react"
-import { getBugList } from '../services/bug.service'
-import { getPeopleList } from '../services/people.service'
+import { getBugList } from '../services/bug'
+import { getPeopleList } from '../services/people'
 
 export const GlobalContext = createContext()
 

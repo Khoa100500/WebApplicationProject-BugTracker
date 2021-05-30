@@ -1,23 +1,22 @@
 const express = require('express')
-const config = require('./config')
-const { verifyToken, login } = require('./controllers/auth')
+const { verifyToken } = require('./controllers/auth')
+const cors = require('cors')
 
 const app = express()
-
 app.use(express.json())
-app.use(express.static(config.PUBLIC_DIR))
+app.use(cors())
 
 // Load routes
 apiRouter = express.Router()
-apiRouter.use(verifyToken)
-apiRouter.post('/login', login)
-require('./routes/bugs.route')(apiRouter)
-require('./routes/people.route')(apiRouter)
+// apiRouter.use(verifyToken)
+apiRouter.use('/login', require('./routes/login'))
+apiRouter.use('/bugs', require('./routes/bug'))
+apiRouter.use('/people', require('./routes/people'))
 
 
 app.use('/api', apiRouter)
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`)
 })
