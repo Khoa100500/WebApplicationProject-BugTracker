@@ -4,10 +4,10 @@ const router = express.Router()
 
 
 router.get('/', (req, res) => {
-  const { staffID, userID } = req.query
-  if (staffID) {
+  const { role } = req.auth
+  if (role === 'staff') {
     bugController.getBugsByStaffID(req, res)
-  } else if (userID) {
+  } else if (role === 'user') {
     bugController.getBugsByUserID(req, res)
   } else {
     bugController.getBugs(req, res)

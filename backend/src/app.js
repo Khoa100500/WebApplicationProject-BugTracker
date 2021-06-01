@@ -8,7 +8,7 @@ app.use(cors())
 
 // Load routes
 apiRouter = express.Router()
-// apiRouter.use(verifyToken)
+apiRouter.use(verifyToken)
 apiRouter.use('/login', require('./routes/login'))
 apiRouter.use('/bugs', require('./routes/bug'))
 apiRouter.use('/people', require('./routes/people'))

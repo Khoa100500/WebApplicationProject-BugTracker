@@ -56,7 +56,7 @@ exports.getBugs = (req, res) => {
 }
 
 exports.getBugsByStaffID = (req, res) => {
-  const { staffID } = req.query
+  const { id } = req.auth
   const sql =
     `SELECT 
     BIN_TO_UUID(b.bug_id) AS id, 
@@ -68,13 +68,13 @@ exports.getBugsByStaffID = (req, res) => {
     WHERE b.bug_id = w.bug_id
     AND w.staffID = UUID_TO_BIN(?)
     AND b.bug_status=0`
-  connection.query(sql, [staffID]).then(result => {
+  connection.query(sql, [id]).then(result => {
     includeBugUpdates(result[0], res)
   })
 }
 
 exports.getBugsByUserID = (req, res) => {
-  const { userID } = req.query
+  const { id } = req.auth
   const sql =
     `SELECT 
     BIN_TO_UUID(b.bug_id) AS id, 
@@ -86,7 +86,7 @@ exports.getBugsByUserID = (req, res) => {
     WHERE b.bug_id = w.bug_id
     AND b.userID = UUID_TO_BIN(?)
     AND b.bug_status=0`
-  connection.query(sql, [userID]).then(result => {
+  connection.query(sql, [id]).then(result => {
     includeBugUpdates(result[0], res)
   })
 }
@@ -112,7 +112,7 @@ exports.updateBugByID = (req, res) => {
   const bugID = req.params.bugID
   delete_sql = 'DELETE FROM bug_update WHERE bug_id = UUID_TO_BIN(?)'
   insert_sql = 'INSERT INTO bug_update(bug_id, content, update_time, authorID) VALUES (UUID_TO_BIN(?), ?, ?, UUID_TO_BIN(?))'
-  connection.query(delete_sql, [id]).then(() => {
+  connection.query(delete_sql, [bugID]).then(() => {
     const promises = updates.map(({ content, time, authorID }) =>
       connection.query(insert_sql, [bugID, content, time, authorID]))
     Promise.all(promises).then(() => {
