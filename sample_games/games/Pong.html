@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Pong Game</title>
+    </head>
+
+    <body>
+        <script src = '../scripts/three.js'></script>
+        <script src = '../scripts/cannon.js'></script>
+        <script>
+            //global variables
+            let renderer, camera, scene;
+
+            initialize();
+
+            addPaddles();
+
+            function initialize()
+            {
+                scene = new THREE.Scene();
+                const aspect = window.innerWidth / window.innerHeight;
+                const width = 10;
+                const height = width / aspect;
+                
+                camera = new THREE.OrthographicCamera(width / -2, width / 2, height / 2, height / -2, 0, 100);
+                camera.position.set(5, 5, 5);
+                camera.lookAt(0, 0, 0);
+                addPaddles();
+
+                renderer = new THREE.WebGLRenderer({antialias: true})
+                renderer.setSize(window.innerWidth, window.innerHeight);
+
+                document.body.appendChild(renderer.domElement);
+            }
+
+            function addPaddles()
+            {
+                const padW = 20, padH = 10, padD = 5;
+                const pad1 = new THREE.BoxGeometry(padW, padH, padD);
+                const pad2 = new THREE.BoxGeometry(padW, padH, padD);
+                
+                const color = new THREE.Color(0x26619c);
+                const mat1 = new THREE.MeshLambertMaterial({color});
+                const mat2 = new THREE.MeshLambertMaterial({color});
+
+                const mesh1 = new THREE.Mesh(pad1, mat1);
+                const mesh2 = new THREE.Mesh(pad2, mat2);
+                
+                mesh1.position.set(0, 0, 0);
+                mesh2.position.set(5, 0, 0);
+
+                scene.add(mesh1); scene.add(mesh2);
+            }
+
+            function animate()
+            {
+                requestAnimationFrame(animate);
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+        </script>
+    </body>
+</html>
