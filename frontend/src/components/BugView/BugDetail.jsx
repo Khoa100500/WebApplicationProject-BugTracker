@@ -14,7 +14,6 @@ const BugDetail = () => {
   const {
     user: { role },
   } = useAuth()
-
   const user = peopleList.find((user) => user.id === bug.userID)
   const staff = peopleList.find((user) => user.id === bug.staffID)
 
@@ -56,7 +55,6 @@ const BugDetail = () => {
             />
           </div>
         </div>
-
         <div className="row mb-2 align-items-center">
           <label className="col-2" htmlFor="userdetail">
             <strong>User</strong>

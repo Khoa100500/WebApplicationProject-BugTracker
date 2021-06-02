@@ -26,7 +26,6 @@ function App() {
         <ProjectView />
       </PrivateRoute>
       <Route path="/login" render={({ location }) => {
-
         if (user.accessToken) {
           return <Redirect
             to={{

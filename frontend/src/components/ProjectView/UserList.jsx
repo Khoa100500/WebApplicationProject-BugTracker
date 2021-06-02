@@ -6,6 +6,7 @@ import './UserList.css'
 
 const UserList = () => {
   const { userList, setSelectedPerson, selectedPerson } = useContext(AppContext)
+
   return (
     <div className="card bg-primary text-white">
       <div className="card-header d-flex justify-content-between align-items-end">

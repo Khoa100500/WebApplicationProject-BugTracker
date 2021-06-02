@@ -46,8 +46,8 @@ const PersonDetail = () => {
               <div className="text-primary">
                 <em>{'@'}</em>
                 {person.role === 'user'
-                  ? peopleList.find((person) => person?.id === staffID).username
-                  : peopleList.find((person) => person?.id === userID).username}
+                  ? peopleList.find((person) => person.id === staffID).username
+                  : peopleList.find((person) => person.id === userID).username}
               </div>
             </div>
           </li>

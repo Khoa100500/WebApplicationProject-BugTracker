@@ -9,9 +9,8 @@ export const initialState = {
 }
 
 function appReducer(state, action) {
-  console.log(action)
-
   switch (action.type) {
+
     case 'RESET':
       return initialState
 
@@ -175,29 +174,28 @@ function killBug({ bugList, selectedBug }) {
 }
 
 function updatePerson({ peopleList, userList, staffList, selectedPerson }, newInfo) {
-  const _person = {
+  const newPerson = {
     ...selectedPerson,
     ...newInfo
   }
-  const _people_list = [
-    _person,
-    ...peopleList.filter(person => person.id !== _person.id)
+  const newPeopleList = [
+    newPerson,
+    ...peopleList.filter(person => person.id !== newPerson.id)
   ]
-  const _userList = userList.filter(user => user.id !== _person.id)
-  const _staffList = staffList.filter(staff => staff.id !== _person.id)
+  const newUserList = userList.filter(user => user.id !== newPerson.id)
+  const newStaffList = staffList.filter(staff => staff.id !== newPerson.id)
 
-  if (_person.role === 'user') {
-    _userList.unshift(_person)
+  if (newPerson.role === 'user') {
+    newUserList.unshift(newPerson)
   }
-  if (_person.role === 'staff') {
-    _staffList.unshift(_person)
+  if (newPerson.role === 'staff') {
+    newStaffList.unshift(newPerson)
   }
-
   return {
-    selectedPerson: _person,
-    peopleList: _people_list,
-    userList: _userList,
-    staffList: _staffList
+    selectedPerson: newPerson,
+    peopleList: newPeopleList,
+    userList: newUserList,
+    staffList: newStaffList
   }
 }
 

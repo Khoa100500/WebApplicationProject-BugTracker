@@ -44,7 +44,7 @@ const NavBar = () => {
         </ul>
         <div>
           <span className="navbar-text">{`Logged in as`}</span>
-          <span className="text-light m-2">{name?.toUpperCase()}</span>
+          <span className="text-light m-2">{name.toUpperCase()}</span>
           <button className="btn btn-outline-light" onClick={handleLogout}>
             Logout
           </button>

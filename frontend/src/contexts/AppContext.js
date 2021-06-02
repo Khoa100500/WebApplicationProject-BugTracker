@@ -80,7 +80,6 @@ export const AppContextProvider = ({ children }) => {
       role: 'staff'
     }
     staff.id = (await peopleAPI.addPerson(staff)).id
-    console.log(staff) ///////////////////////////
     dispatch({
       type: 'ADD_STAFF', staff
     })

@@ -3,7 +3,6 @@ import { AppContext } from '../../contexts/AppContext'
 
 const BtnAdd = () => {
   const { userList, staffList, addBug } = useContext(AppContext)
-
   const titleRef = useRef()
   const descriptionRef = useRef()
   const [userID, setUserID] = useState(userList[0]?.id)

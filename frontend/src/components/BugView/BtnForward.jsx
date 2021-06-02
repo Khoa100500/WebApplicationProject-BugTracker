@@ -5,7 +5,6 @@ const BtnForward = () => {
   const { staffList: _staffList, selectedBug: bug } = useContext(AppContext)
   const { forwardBug } = useContext(AppContext)
   const staffList = _staffList.filter((staff) => staff.id !== bug.staffID)
-
   const [staffID, setStaffID] = useState(staffList[0]?.id)
 
   const handleSubmit = () => {

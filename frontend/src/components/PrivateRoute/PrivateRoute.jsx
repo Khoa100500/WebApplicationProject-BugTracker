@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext'
 
 export const PrivateRoute = ({ children, ...props }) => {
   const { user } = useAuth()
+  
   return (
     <Route
       {...props}

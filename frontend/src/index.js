@@ -5,7 +5,6 @@ import { HashRouter } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 import { AppContextProvider } from './contexts/AppContext';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>

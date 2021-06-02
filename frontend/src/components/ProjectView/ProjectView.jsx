@@ -6,6 +6,7 @@ import { AppContext } from '../../contexts/AppContext'
 
 const ProjectView = () => {
   const { selectedPerson } = useContext(AppContext)
+  
   return (
     <div className="container pt-3">
       <div className="row">
