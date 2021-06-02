@@ -101,7 +101,9 @@ exports.createBug = (req, res) => {
   connection.query(sql1, [UUID, title, description, userID]).then(() => {
     connection.query(sql2, [UUID, staffID]).then(() => {
       connection.query(sql3, [UUID, content, time, authorID]).then(() => {
-        res.end()
+        res.json({
+          id: UUID
+        })
       })
     })
   })

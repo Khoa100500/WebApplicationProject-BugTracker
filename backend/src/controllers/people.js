@@ -15,11 +15,14 @@ exports.getPeople = (req, res) => {
 
 exports.createPerson = (req, res) => {
   const { name, role, username, password } = req.body
+  const UUID = uuidv4()
   const role_id = ['admin', 'staff', 'user'].indexOf(role) + 1
   const sql =
     `INSERT INTO people VALUES(UUID_TO_BIN(?), ?, ?, ?, ?)`
-  connection.query(sql, [uuidv4(), name, role_id, password, username]).then(() => {
-    res.end()
+  connection.query(sql, [UUID, name, role_id, password, username]).then(() => {
+    res.json({
+      id: UUID
+    })
   })
 }
 
