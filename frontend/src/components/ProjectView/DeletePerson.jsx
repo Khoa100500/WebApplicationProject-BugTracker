@@ -1,9 +1,13 @@
 import { useContext } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
-import { deletePerson } from '../../services/people'
+import { AppContext } from '../../contexts/AppContext'
 
-const DeletePerson = ({ person, bugList }) => {
-  const { refreshPeopleList, refreshBugList } = useContext(GlobalContext)
+const DeletePerson = () => {
+  const { deletePerson, selectedPerson: person } = useContext(AppContext)
+
+  const handleSubmit = () => {
+    deletePerson()
+  }
+
   return (
     <>
       <div
@@ -14,7 +18,7 @@ const DeletePerson = ({ person, bugList }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header bg-primary text-light">
-              <h5 className="modal-title">Remove this {person?.role}</h5>
+              <h5 className="modal-title">Remove this {person.role}</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -22,8 +26,8 @@ const DeletePerson = ({ person, bugList }) => {
               ></button>
             </div>
             <div className="modal-body">
-              Do you really want to remove {person?.role} {person?.name}?
-              <br /> Innocent bugs involved with this {person?.role} will be
+              Do you really want to remove {person.role} {person.name}?
+              <br /> Innocent bugs involved with this {person.role} will be
               killed!
             </div>
             <div className="modal-footer">
@@ -38,16 +42,7 @@ const DeletePerson = ({ person, bugList }) => {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={(e) => {
-                  e.preventDefault()
-                  deletePerson(person.id, bugList)
-                    .then(() => {
-                      refreshPeopleList()
-                    })
-                    .then(() => {
-                      refreshBugList()
-                    })
-                }}
+                onClick={handleSubmit}
               >
                 Remove
               </button>

@@ -1,49 +1,26 @@
-import { useContext, useState } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
-import { addBug } from '../../services/bug'
+import { useContext, useRef, useState } from 'react'
+import { AppContext } from '../../contexts/AppContext'
 
 const BtnAdd = () => {
-  const {
-    user: { id },
-    peopleList,
-    refreshBugList,
-  } = useContext(GlobalContext)
+  const { userList, staffList, addBug } = useContext(AppContext)
 
-  const userList = []
-  const staffList = []
-
-  peopleList.forEach((person) => {
-    if (person.id !== id) {
-      if (person.role === 'staff') {
-        staffList.push(person)
-      }
-      if (person.role === 'user') {
-        userList.push(person)
-      }
-    }
-  })
-
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const titleRef = useRef()
+  const descriptionRef = useRef()
   const [userID, setUserID] = useState(userList[0]?.id)
   const [staffID, setStaffID] = useState(staffList[0]?.id)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     addBug(
-      id,
-      title,
-      description,
+      titleRef.current.value,
+      descriptionRef.current.value,
       userID,
-      staffID,
-      staffList.find((staff) => staff.id === staffID).username
-    ).then(() => {
-      refreshBugList()
-    })
+      staffID
+    )
   }
 
   const resetInput = () => {
-    setTitle('')
-    setDescription('')
+    titleRef.current.value = ''
+    descriptionRef.current.value = ''
     setUserID(userList[0]?.id)
     setStaffID(staffList[0]?.id)
   }
@@ -67,10 +44,8 @@ const BtnAdd = () => {
                   type="text"
                   className="form-control"
                   id="title"
-                  value={title}
-                  onChange={(e) => {
-                    setTitle(e.target.value)
-                  }}
+                  ref={titleRef}
+                  required
                 />
                 <label htmlFor="title">Title</label>
               </div>
@@ -79,10 +54,8 @@ const BtnAdd = () => {
                   className="form-control"
                   id="description"
                   style={{ height: '100px' }}
-                  value={description}
-                  onChange={(e) => {
-                    setDescription(e.target.value)
-                  }}
+                  ref={descriptionRef}
+                  required
                 />
                 <label htmlFor="description">Description</label>
               </div>

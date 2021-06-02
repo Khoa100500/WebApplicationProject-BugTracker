@@ -1,19 +1,16 @@
-import { useContext, useState } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
-import { updateBug } from '../../services/bug'
+import { useContext, useRef } from 'react'
+import { AppContext } from '../../contexts/AppContext'
 
-const BtnUpdate = ({ bug }) => {
-  const {
-    user: { id },
-    refreshBugList,
-  } = useContext(GlobalContext)
+const BtnUpdate = () => {
+  const { updateBug } = useContext(AppContext)
+  const contentRef = useRef()
 
-  const [content, setContent] = useState('')
+  const handleSubmit = () => {
+    updateBug(contentRef.current.value)
+  }
 
-  const handleSubmit = (e) => {
-    updateBug(bug.id, id, content, bug.updates).then(() => {
-      refreshBugList()
-    })
+  const resetInput = () => {
+    contentRef.current.value = ''
   }
 
   return (
@@ -22,9 +19,7 @@ const BtnUpdate = ({ bug }) => {
         className="btn btn-outline-light"
         data-bs-toggle="modal"
         data-bs-target="#modalUpdateBug"
-        onClick={() => {
-          setContent('')
-        }}
+        onClick={resetInput}
       >
         Update
       </button>
@@ -45,10 +40,8 @@ const BtnUpdate = ({ bug }) => {
                   className="form-control"
                   id="content"
                   style={{ height: '100px' }}
-                  value={content}
-                  onChange={(e) => {
-                    setContent(e.target.value)
-                  }}
+                  ref={contentRef}
+                  required
                 />
                 <label htmlFor="content">Update content</label>
               </div>

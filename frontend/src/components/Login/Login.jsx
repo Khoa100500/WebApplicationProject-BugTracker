@@ -1,34 +1,25 @@
-import { useContext, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
-import config from '../../config'
-import { GlobalContext } from '../../context/GlobalContext'
-import { login } from '../../services/auth'
+import { useAuth } from '../../contexts/AuthContext'
 
 const Login = () => {
-  const { user, setUser, refreshBugList, refreshPeopleList } =
-    useContext(GlobalContext)
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const { login } = useAuth()
+  const usernameRef = useRef()
+  const passwordRef = useRef()
   const [loading, setLoading] = useState(false)
   const history = useHistory()
-
-  const redirectToBugview = () => {
-    history.push('/bugview')
-  }
 
   const handleLogin = (e) => {
     e.preventDefault()
     setLoading(true)
-    login(username, password)
-      .then((res) => {
+    login(usernameRef.current.value, passwordRef.current.value)
+      .then(() => {
         setLoading(false)
-        setUser(res)
-        redirectToBugview()
+        history.push('/bugview')
       })
       .catch((err) => {
         setLoading(false)
-        setUsername('')
-        setPassword('')
+        passwordRef.current.value = ''
         alert(`Failed to login: ${err}`)
       })
   }
@@ -44,8 +35,8 @@ const Login = () => {
               type="text"
               className="form-control"
               placeholder="Enter Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              ref={usernameRef}
+              required
             />
           </div>
           <div className="mb-3">
@@ -54,8 +45,8 @@ const Login = () => {
               type="password"
               className="form-control"
               placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              ref={passwordRef}
+              required
             />
           </div>
           <button

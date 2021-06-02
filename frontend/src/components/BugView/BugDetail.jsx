@@ -2,43 +2,30 @@ import BtnUpdate from './BtnUpdate'
 import BtnForward from './BtnForward'
 import BtnKill from './BtnKill'
 import { useContext } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
+import { AppContext } from '../../contexts/AppContext'
+import { useAuth } from '../../contexts/AuthContext'
 
 const formatTime = (sqlTime) => {
   return sqlTime.slice(0, 19).replace('T', ' ')
 }
 
-const BugDetail = ({ selectedBugID }) => {
+const BugDetail = () => {
+  const { peopleList, selectedBug: bug } = useContext(AppContext)
   const {
     user: { role },
-    peopleList,
-    bugList,
-  } = useContext(GlobalContext)
+  } = useAuth()
 
-  const userList = []
-  const staffList = []
-
-  peopleList.forEach((person) => {
-    if (person.role === 'staff') {
-      staffList.push(person)
-    }
-    if (person.role === 'user') {
-      userList.push(person)
-    }
-  })
-
-  const bug = bugList.find((bug) => bug.id === selectedBugID)
-  const user = userList.find((user) => user.id === bug?.userID)
-  const staff = staffList.find((user) => user.id === bug?.staffID)
+  const user = peopleList.find((user) => user.id === bug.userID)
+  const staff = peopleList.find((user) => user.id === bug.staffID)
 
   return (
     <div className="card bg-primary text-light">
       <div className="card-header d-flex justify-content-between align-items-end">
         <h5>Bug detail</h5>
         <div className="btn-group ">
-          {bug && ['admin', 'staff'].includes(role) && <BtnUpdate bug={bug} />}
-          {bug && ['admin', 'staff'].includes(role) && <BtnForward bug={bug} />}
-          {bug && ['admin', 'user'].includes(role) && <BtnKill bug={bug} />}
+          {['admin', 'staff'].includes(role) && <BtnUpdate />}
+          {['admin', 'staff'].includes(role) && <BtnForward />}
+          {['admin', 'user'].includes(role) && <BtnKill />}
         </div>
       </div>
       <div className="card-body bg-white text-dark">
@@ -52,7 +39,7 @@ const BugDetail = ({ selectedBugID }) => {
               type="text"
               id="titledetail"
               className="form-control"
-              value={bug?.title}
+              value={bug.title}
             />
           </div>
         </div>
@@ -65,7 +52,7 @@ const BugDetail = ({ selectedBugID }) => {
               id="describe"
               className="form-control"
               style={{ height: '100px' }}
-              value={bug?.description}
+              value={bug.description}
             />
           </div>
         </div>
@@ -76,13 +63,13 @@ const BugDetail = ({ selectedBugID }) => {
           </label>
           <div className="col-10">
             <div className="input-group">
-              <span className="input-group-text">@{user?.username}</span>
+              <span className="input-group-text">@{user.username}</span>
               <input
                 readOnly
                 type="text"
                 id="userdetail"
                 className="form-control"
-                value={user?.name}
+                value={user.name}
               />
             </div>
           </div>
@@ -93,20 +80,20 @@ const BugDetail = ({ selectedBugID }) => {
           </label>
           <div className="col-10">
             <div className="input-group">
-              <span className="input-group-text">@{staff?.username}</span>
+              <span className="input-group-text">@{staff.username}</span>
               <input
                 readOnly
                 type="text"
                 id="staffdetail"
                 className="form-control"
-                value={staff?.name}
+                value={staff.name}
               />
             </div>
           </div>
         </div>
       </div>
       <ul className="list-group list-group-flush">
-        {bug?.updates.map(({ time, content, authorID }, index) => (
+        {bug.updates.map(({ time, content, authorID }, index) => (
           <li key={index} className="list-group-item">
             <div className="d-flex justify-content-between">
               <div>

@@ -1,12 +1,11 @@
 import { useContext } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
+import { AppContext } from '../../contexts/AppContext'
 import AddUser from './AddUser'
 
 import './UserList.css'
 
-const UserList = ({ selectedPersonID, setSelectedPersonID }) => {
-  const { peopleList } = useContext(GlobalContext)
-  const userList = peopleList.filter((person) => person.role === 'user')
+const UserList = () => {
+  const { userList, setSelectedPerson, selectedPerson } = useContext(AppContext)
   return (
     <div className="card bg-primary text-white">
       <div className="card-header d-flex justify-content-between align-items-end">
@@ -19,9 +18,9 @@ const UserList = ({ selectedPersonID, setSelectedPersonID }) => {
             key={user.id}
             className={
               'list-group-item user-select-none list-group-item-action' +
-              (user.id === selectedPersonID ? ' active' : '')
+              (user.id === selectedPerson.id ? ' active' : '')
             }
-            onClick={() => setSelectedPersonID(user.id)}
+            onClick={() => setSelectedPerson(user)}
           >
             <strong>@{user.username}</strong>
             {' ' + user.name}

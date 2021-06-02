@@ -1,30 +1,15 @@
 import { useContext, useState } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
-import { forwardBug } from '../../services/bug'
+import { AppContext } from '../../contexts/AppContext'
 
-const BtnForward = ({ bug }) => {
-  const {
-    user: { id },
-    peopleList,
-    refreshBugList,
-  } = useContext(GlobalContext)
-
-  const staffList = peopleList.filter(
-    (staff) => staff.id !== bug?.staffID && staff.role === 'staff'
-  )
+const BtnForward = () => {
+  const { staffList: _staffList, selectedBug: bug } = useContext(AppContext)
+  const { forwardBug } = useContext(AppContext)
+  const staffList = _staffList.filter((staff) => staff.id !== bug.staffID)
 
   const [staffID, setStaffID] = useState(staffList[0]?.id)
 
   const handleSubmit = () => {
-    forwardBug(
-      bug.id,
-      id,
-      staffID,
-      bug.updates,
-      staffList.filter((staff) => staff.id === staffID)[0].username
-    ).then(() => {
-      refreshBugList()
-    })
+    forwardBug(staffID)
   }
 
   return (
@@ -85,7 +70,7 @@ const BtnForward = ({ bug }) => {
         data-bs-toggle="modal"
         data-bs-target="#modalForwardBug"
         onClick={() => {
-          setStaffID(staffList[0].id)
+          setStaffID(staffList[0]?.id)
         }}
       >
         Forward

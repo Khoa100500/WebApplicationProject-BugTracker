@@ -1,33 +1,28 @@
-import { API } from './auth'
-import { killBug } from './bug'
+import { API } from '../utils'
+import bugAPI from './bug'
 
-export const getPeopleList = () => {
-  return API.get('/people').then((res) => {
-    return res.data
-  })
+const peopleAPI = {}
+
+peopleAPI.getPeopleList = async () => {
+  const res = await API.get('/people')
+  return res.data
 }
 
-const addPerson = (role, username, password, name) => {
-  return API.post('/people', {
-    name, role, username, password
-  }).then((res) => res.data)
+peopleAPI.addPerson = async (person) => {
+  const res = await API.post('/people', person)
+  return res.data
 }
 
-export const addUser = (username, password, name) => {
-  return addPerson('user', username, password, name)
+peopleAPI.deletePerson = async (id, bugList) => {
+  const promises = bugList
+    .filter(bug => bug.userID === id || bug.staffID === id)
+    .map(bug => bugAPI.killBug(bug.id))
+  await Promise.all(promises)
+  await API.delete('/people/' + id)
 }
 
-export const addStaff = (username, password, name) => {
-  return addPerson('staff', username, password, name)
+peopleAPI.updatePerson = async (person) => {
+  await API.patch('/people/' + person.id, person)
 }
 
-export const deletePerson = (id, bugList) => {
-  const promises = bugList.map(bug => killBug(bug.id))
-  return Promise.all(promises).then(() => API.delete('/people/' + id))
-}
-
-export const updatePerson = (id, name, role, username, password) => {
-  return API.patch('/people/' + id, {
-    name, role, username, password
-  })
-}
+export default peopleAPI

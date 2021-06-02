@@ -1,9 +1,13 @@
-import { killBug } from '../../services/bug'
 import { useContext } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
+import { AppContext } from '../../contexts/AppContext'
 
-const BtnKill = ({ bug }) => {
-  const { refreshBugList } = useContext(GlobalContext)
+const BtnKill = () => {
+  const { killBug } = useContext(AppContext)
+
+  const handleSubmit = () => {
+    killBug()
+  }
+
   return (
     <>
       <div className="modal fade text-dark" id="modalKillBug" tabIndex="-1">
@@ -32,12 +36,7 @@ const BtnKill = ({ bug }) => {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={(e) => {
-                  e.preventDefault()
-                  killBug(bug.id).then(() => {
-                    refreshBugList()
-                  })
-                }}
+                onClick={handleSubmit}
               >
                 Submit
               </button>

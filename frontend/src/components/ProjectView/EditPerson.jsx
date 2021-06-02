@@ -1,24 +1,24 @@
-import { useState, useContext } from 'react'
-import { updatePerson } from '../../services/people'
-import { GlobalContext } from '../../context/GlobalContext'
+import { useContext, useRef } from 'react'
+import { AppContext } from '../../contexts/AppContext'
 
-const EditPerson = ({ person }) => {
-  const { refreshPeopleList } = useContext(GlobalContext)
-  const [name, setName] = useState(person?.name)
-  const [username, setUsername] = useState(person?.username)
-  const [password, setPassword] = useState(person?.password)
+const EditPerson = () => {
+  const { updatePerson, selectedPerson: person } = useContext(AppContext)
+  const nameRef = useRef()
+  const usernameRef = useRef()
+  const passwordRef = useRef()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    updatePerson(person.id, name, person.role, username, password).then(() => {
-      refreshPeopleList()
-    })
+  const handleSubmit = () => {
+    updatePerson(
+      nameRef.current.value,
+      usernameRef.current.value,
+      passwordRef.current.value
+    )
   }
 
   const resetInput = () => {
-    setName(person?.name)
-    setUsername(person?.username)
-    setPassword(person?.password)
+    usernameRef.current.value = person.username
+    passwordRef.current.value = person.password
+    nameRef.current.value = person.name
   }
 
   return (
@@ -35,7 +35,7 @@ const EditPerson = ({ person }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header bg-primary text-light">
-              <h5 className="modal-title">Edit {person?.role}</h5>
+              <h5 className="modal-title">Edit {person.role}</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -48,11 +48,8 @@ const EditPerson = ({ person }) => {
                   type="text"
                   className="form-control"
                   id="nameuseredit"
-                  value={name}
-                  placeholder={person?.name}
-                  onChange={(e) => {
-                    setName(e.target.value)
-                  }}
+                  ref={nameRef}
+                  required
                 />
                 <label htmlFor="nameuseredit">Full name</label>
               </div>
@@ -61,11 +58,8 @@ const EditPerson = ({ person }) => {
                   type="text"
                   className="form-control"
                   id="usernameedit"
-                  value={username}
-                  placeholder={person?.username}
-                  onChange={(e) => {
-                    setUsername(e.target.value)
-                  }}
+                  ref={usernameRef}
+                  required
                 />
                 <label htmlFor="usernameedit">Username</label>
               </div>
@@ -74,11 +68,7 @@ const EditPerson = ({ person }) => {
                   type="password"
                   className="form-control"
                   id="passwordedit"
-                  value={password}
-                  placeholder={person?.password}
-                  onChange={(e) => {
-                    setPassword(e.target.value)
-                  }}
+                  ref={passwordRef}
                 />
                 <label htmlFor="passwordedit">Password</label>
               </div>

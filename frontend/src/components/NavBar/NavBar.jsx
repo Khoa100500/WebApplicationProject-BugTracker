@@ -1,27 +1,15 @@
-import { useContext } from 'react'
-import { GlobalContext } from '../../context/GlobalContext'
 import { NavLink } from 'react-router-dom'
-import { logout } from '../../services/auth'
-import { useHistory } from 'react-router'
+import { useAuth } from '../../contexts/AuthContext'
 
 const NavBar = () => {
   const {
     user: { name, role },
-    setUser,
-  } = useContext(GlobalContext)
-  const history = useHistory()
+    logout,
+  } = useAuth()
 
   const handleLogout = (e) => {
     e.preventDefault()
     logout()
-    setUser({
-      id: undefined,
-      role: undefined,
-      name: undefined,
-      username: undefined,
-      accessToken: undefined,
-    })
-    history.push('/login')
   }
 
   return (

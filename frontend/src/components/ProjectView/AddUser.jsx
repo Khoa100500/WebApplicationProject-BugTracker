@@ -1,23 +1,24 @@
-import { useState, useContext } from 'react'
-import { addUser } from '../../services/people'
-import { GlobalContext } from '../../context/GlobalContext'
+import { useContext, useRef } from 'react'
+import { AppContext } from '../../contexts/AppContext'
 
 const AddUser = () => {
-  const { refreshPeopleList } = useContext(GlobalContext)
-  const [name, setName] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const { addUser } = useContext(AppContext)
+  const nameRef = useRef()
+  const usernameRef = useRef()
+  const passwordRef = useRef()
 
-  const handleSubmit = (e) => {
-    addUser(username, password, name).then(() => {
-      refreshPeopleList()
-    })
+  const handleSubmit = () => {
+    addUser(
+      usernameRef.current.value,
+      passwordRef.current.value,
+      nameRef.current.value
+    )
   }
 
   const resetInput = () => {
-    setName('')
-    setUsername('')
-    setPassword('')
+    usernameRef.current.value = ''
+    passwordRef.current.value = ''
+    nameRef.current.value = ''
   }
 
   return (
@@ -39,10 +40,8 @@ const AddUser = () => {
                   type="text"
                   className="form-control"
                   id="nameuser"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value)
-                  }}
+                  ref={nameRef}
+                  required
                 />
                 <label htmlFor="nameuser">Full name</label>
               </div>
@@ -51,10 +50,8 @@ const AddUser = () => {
                   type="text"
                   className="form-control"
                   id="username"
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value)
-                  }}
+                  ref={usernameRef}
+                  required
                 />
                 <label htmlFor="username">Username</label>
               </div>
@@ -63,10 +60,8 @@ const AddUser = () => {
                   type="password"
                   className="form-control"
                   id="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value)
-                  }}
+                  ref={passwordRef}
+                  required
                 />
                 <label htmlFor="password">Password</label>
               </div>
