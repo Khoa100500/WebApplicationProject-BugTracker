@@ -1,8 +1,8 @@
 module.exports = {
   MYSQL_CONFIG: {
     //host: 'dbproject.3utilities.com',
-    //user: 'khoadeptrai',
-    //password: 'Yenni1005',
+    //user: 'wad_guest',
+    //password: 'mysqllit1765',
     //database: 'bugtracker',
     connectionLimit: 10,
     host: 'localhost',
