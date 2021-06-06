@@ -5,92 +5,103 @@ export const initialState = {
   userList: undefined,
   staffList: undefined,
   selectedBug: undefined,
-  selectedPerson: undefined
+  selectedPerson: undefined,
+  renderChildren: false
 }
 
 function appReducer(state, action) {
-  switch (action.type) {
+  try {
+    switch (action.type) {
 
-    case 'RESET':
-      return initialState
+      case 'RESET_DATA':
+        return {
+          ...initialState,
+          renderChildren: true
+        }
 
-    case 'SET_BUG':
-      const { selectedBug } = action
-      return {
-        ...state,
-        selectedBug
-      }
+      case 'RENDER_NONE':
+        return {
+          ...state,
+          renderChildren: false
+        }
 
-    case 'SET_PERSON':
-      const { selectedPerson } = action
-      return {
-        ...state,
-        selectedPerson
-      }
+      case 'SET_BUG':
+        const { selectedBug } = action
+        return {
+          ...state,
+          selectedBug
+        }
 
-    case 'LOAD_PEOPLE':
-      const { peopleList } = action
-      return {
-        ...state,
-        ...loadPeople(peopleList)
-      }
+      case 'SET_PERSON':
+        const { selectedPerson } = action
+        return {
+          ...state,
+          selectedPerson
+        }
 
-    case 'LOAD_BUGS':
-      const { bugList } = action
-      return {
-        ...state,
-        ...loadBug(bugList)
-      }
+      case 'LOAD_DATA':
+        const { peopleList, bugList } = action
+        return {
+          ...state,
+          ...loadPeople(peopleList),
+          ...loadBug(bugList),
+          renderChildren: true
+        }
 
-    case 'ADD_USER':
-      const { user } = action
-      return {
-        ...state,
-        ...addUser(state, user)
-      }
+      case 'ADD_USER':
+        const { user } = action
+        return {
+          ...state,
+          ...addUser(state, user)
+        }
 
-    case 'ADD_STAFF':
-      const { staff } = action
-      return {
-        ...state,
-        ...addStaff(state, staff)
-      }
+      case 'ADD_STAFF':
+        const { staff } = action
+        return {
+          ...state,
+          ...addStaff(state, staff)
+        }
 
-    case 'UPDATE_PERSON':
-      const { newInfo } = action
-      return {
-        ...state,
-        ...updatePerson(state, newInfo)
-      }
+      case 'UPDATE_PERSON':
+        const { newInfo } = action
+        return {
+          ...state,
+          ...updatePerson(state, newInfo)
+        }
 
-    case 'DELETE_PERSON':
-      return {
-        ...state,
-        ...deletePerson(state)
-      }
+      case 'DELETE_PERSON':
+        return {
+          ...state,
+          ...deletePerson(state)
+        }
 
-    case 'ADD_BUG':
-      const { bug } = action
-      return {
-        ...state,
-        ...addBug(state, bug)
-      }
+      case 'ADD_BUG':
+        const { bug } = action
+        return {
+          ...state,
+          ...addBug(state, bug)
+        }
 
-    case 'UPDATE_BUG':
-      const { update, staffID } = action
-      return {
-        ...state,
-        ...updateBug(state, update, staffID)
-      }
+      case 'UPDATE_BUG':
+        const { update, staffID } = action
+        return {
+          ...state,
+          ...updateBug(state, update, staffID)
+        }
 
-    case 'KILL_BUG':
-      return {
-        ...state,
-        ...killBug(state)
-      }
+      case 'KILL_BUG':
+        return {
+          ...state,
+          ...killBug(state)
+        }
 
-    default:
-      throw new Error(`Action type '${action.type}' is not recognizable`)
+      default:
+        throw new Error(`Action type '${action.type}' is not recognizable`)
+    }
+
+  } catch (error) {
+    console.log(error)
+    return initialState
   }
 }
 
@@ -128,7 +139,6 @@ function addBug({ bugList }, bug) {
 }
 
 function addUser({ peopleList, userList }, user) {
-  user.role = 'user'
   return {
     peopleList: peopleList.concat(user),
     userList: userList.concat(user),
@@ -137,7 +147,6 @@ function addUser({ peopleList, userList }, user) {
 }
 
 function addStaff({ peopleList, staffList }, staff) {
-  staff.role = 'staff'
   return {
     peopleList: peopleList.concat(staff),
     staffList: staffList.concat(staff),
@@ -186,10 +195,10 @@ function updatePerson({ peopleList, userList, staffList, selectedPerson }, newIn
   const newStaffList = staffList.filter(staff => staff.id !== newPerson.id)
 
   if (newPerson.role === 'user') {
-    newUserList.unshift(newPerson)
+    newUserList.push(newPerson)
   }
   if (newPerson.role === 'staff') {
-    newStaffList.unshift(newPerson)
+    newStaffList.push(newPerson)
   }
   return {
     selectedPerson: newPerson,

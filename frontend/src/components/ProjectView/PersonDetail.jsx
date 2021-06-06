@@ -1,14 +1,18 @@
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/AppContext'
-
 import EditPerson from './EditPerson'
 import DeletePerson from './DeletePerson'
+import { useRouteMatch } from 'react-router'
+import { Link } from 'react-router-dom'
+
+
 
 const PersonDetail = () => {
   const { peopleList, bugList, selectedPerson: person } = useContext(AppContext)
   const _bugList = bugList.filter(
     (bug) => bug.staffID === person.id || bug.userID === person.id
   )
+  const match = useRouteMatch()
 
   return (
     <div className="card bg-primary text-light">
@@ -42,12 +46,23 @@ const PersonDetail = () => {
         {_bugList.map(({ id, userID, staffID, title }) => (
           <li key={id} className="list-group-item">
             <div className="d-flex justify-content-between">
-              <div>{title}</div>
+              <Link to={`/bugview/${id}`} style={{ textDecoration: 'none' }}>
+                {title}
+              </Link>
               <div className="text-primary">
                 <em>{'@'}</em>
-                {person.role === 'user'
-                  ? peopleList.find((person) => person.id === staffID).username
-                  : peopleList.find((person) => person.id === userID).username}
+                <Link
+                  to={`${match.path}/${
+                    person.role === 'user' ? staffID : userID
+                  }`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  {person.role === 'user'
+                    ? peopleList.find((person) => person.id === staffID)
+                        .username
+                    : peopleList.find((person) => person.id === userID)
+                        .username}
+                </Link>
               </div>
             </div>
           </li>

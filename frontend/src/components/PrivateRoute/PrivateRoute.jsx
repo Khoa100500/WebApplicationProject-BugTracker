@@ -1,17 +1,16 @@
 import { Route, Redirect } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 
-export const PrivateRoute = ({ children, ...props }) => {
+export const PrivateRoute = ({ children, roles, ...props }) => {
   const { user } = useAuth()
-  
+
   return (
     <Route
       {...props}
       render={({ location }) => {
-        if (user.accessToken) {
+        if (user.id && roles.includes(user.role)) {
           return children
         } else {
-          alert('Unauthorized access')
           return (
             <Redirect
               to={{

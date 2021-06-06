@@ -11,14 +11,14 @@ function App() {
   const { user } = useAuth()
   return (
     <Switch>
-      <PrivateRoute path="/bugview">
+      <PrivateRoute path="/bugview" roles={['admin', 'staff', 'user']}>
         <NavBar />
         <Helmet>
           <title>BugView</title>
         </Helmet>
         <BugView />
       </PrivateRoute>
-      <PrivateRoute path="/projectview">
+      <PrivateRoute path="/projectview" roles={['admin']}>
         <NavBar />
         <Helmet>
           <title>Project View</title>

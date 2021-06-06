@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from './contexts/AuthContext';
 import { AppContextProvider } from './contexts/AppContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <Router>
       <AuthProvider>
         <AppContextProvider>
           <App />
         </AppContextProvider>
       </AuthProvider>
-    </HashRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -4,12 +4,12 @@ const bugAPI = {}
 
 bugAPI.getBugList = async () => {
   const res = await API.get('/bugs')
-  return res.data
+  return res?.data
 }
 
 bugAPI.addBug = async (bug) => {
   const res = await API.post('/bugs', bug)
-  return res.data
+  return res?.data
 }
 
 bugAPI.updateBug = async (bug) => {

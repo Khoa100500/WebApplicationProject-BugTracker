@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import { useHistory } from 'react-router'
 import { useAuth } from '../../contexts/AuthContext'
 
 const Login = () => {
@@ -7,7 +6,6 @@ const Login = () => {
   const usernameRef = useRef()
   const passwordRef = useRef()
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -15,7 +13,6 @@ const Login = () => {
     login(usernameRef.current.value, passwordRef.current.value)
       .then(() => {
         setLoading(false)
-        history.push('/bugview')
       })
       .catch((err) => {
         setLoading(false)

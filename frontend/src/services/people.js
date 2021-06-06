@@ -5,12 +5,12 @@ const peopleAPI = {}
 
 peopleAPI.getPeopleList = async () => {
   const res = await API.get('/people')
-  return res.data
+  return res?.data
 }
 
 peopleAPI.addPerson = async (person) => {
   const res = await API.post('/people', person)
-  return res.data
+  return res?.data
 }
 
 peopleAPI.deletePerson = async (id, bugList) => {

@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useReducer } from 'react'
+import { createContext, useEffect, useReducer } from 'react'
 import bugAPI from '../services/bug'
 import peopleAPI from '../services/people'
 import { getCurrentTime } from '../utils'
@@ -10,33 +10,25 @@ export const AppContext = createContext()
 export const AppContextProvider = ({ children }) => {
 
   const { user } = useAuth()
-  const [loading, setLoading] = useState(true)
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
   const fetchData = async () => {
-    setLoading(true)
     dispatch({
-      type: 'LOAD_BUGS',
-      bugList: await bugAPI.getBugList()
-    })
-    dispatch({
-      type: 'LOAD_PEOPLE',
+      type: 'LOAD_DATA',
+      bugList: await bugAPI.getBugList(),
       peopleList: await peopleAPI.getPeopleList()
     })
-    setLoading(false)
   }
 
   // Refetch data on user logout and login
   useEffect(() => {
-    if (user.accessToken) {
+    dispatch({ type: 'RENDER_NONE' })
+    if (user.id) {
       fetchData()
     } else {
-      dispatch({
-        type: 'RESET'
-      })
-      setLoading(false)
+      dispatch({ type: 'RESET_DATA' })
     }
-  }, [user.accessToken])
+  }, [user.id])
 
   async function addBug(title, description, userID, staffID) {
     const staff = state.staffList.find(staff => staff.id === staffID)
@@ -53,7 +45,7 @@ export const AppContextProvider = ({ children }) => {
         }
       ]
     }
-    bug.id = (await bugAPI.addBug(bug)).id
+    bug.id = (await bugAPI.addBug(bug))?.id
     dispatch({
       type: 'ADD_BUG', bug
     })
@@ -66,7 +58,7 @@ export const AppContextProvider = ({ children }) => {
       password,
       role: 'user'
     }
-    user.id = (await peopleAPI.addPerson(user)).id
+    user.id = (await peopleAPI.addPerson(user))?.id
     dispatch({
       type: 'ADD_USER', user
     })
@@ -79,7 +71,7 @@ export const AppContextProvider = ({ children }) => {
       password,
       role: 'staff'
     }
-    staff.id = (await peopleAPI.addPerson(staff)).id
+    staff.id = (await peopleAPI.addPerson(staff))?.id
     dispatch({
       type: 'ADD_STAFF', staff
     })
@@ -163,10 +155,18 @@ export const AppContextProvider = ({ children }) => {
     })
   }
 
+  function setSelectedBugByID(bugID) {
+    setSelectedBug(state.bugList.find(bug => bug.id === bugID))
+  }
+
   function setSelectedPerson(selectedPerson) {
     dispatch({
       type: 'SET_PERSON', selectedPerson
     })
+  }
+
+  function setSelectedPersonByID(personID) {
+    setSelectedPerson(state.peopleList.find(person => person.id === personID))
   }
 
   return (
@@ -181,9 +181,13 @@ export const AppContextProvider = ({ children }) => {
       forwardBug,
       killBug,
       setSelectedBug,
-      setSelectedPerson
+      setSelectedBugByID,
+      setSelectedPerson,
+      setSelectedPersonByID
     }}>
-      {!loading && children}
+      {state.renderChildren ? children : (
+        <h1>Loading information from server, please wait...</h1>
+      )}
     </AppContext.Provider>
   )
 }

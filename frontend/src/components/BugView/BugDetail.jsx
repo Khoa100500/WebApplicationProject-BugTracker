@@ -4,9 +4,48 @@ import BtnKill from './BtnKill'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/AppContext'
 import { useAuth } from '../../contexts/AuthContext'
+import { Link } from 'react-router-dom'
 
 const formatTime = (sqlTime) => {
   return sqlTime.slice(0, 19).replace('T', ' ')
+}
+
+const PersonLink = ({ person, defaultValue = '[deleted]' }) => {
+  const {
+    user: { role },
+  } = useAuth()
+  if (!person) {
+    return defaultValue
+  }
+  if (role === 'admin') {
+    return (
+      <Link to={`/projectview/${person.id}`} style={{ textDecoration: 'none' }}>
+        @{person.username}
+      </Link>
+    )
+  } else {
+    return '@' + person.username
+  }
+}
+
+const ContentParser = ({ content }) => {
+  const { peopleList } = useContext(AppContext)
+  const words = content.split(' ')
+  const last = words.pop()
+  if (last.startsWith('@')) {
+    const username = last.substr(1)
+    return (
+      <>
+        <span>{words.join(' ') + ' '}</span>
+        <PersonLink
+          person={peopleList.find((person) => person.username === username)}
+          defaultValue={'@' + username}
+        />
+      </>
+    )
+  } else {
+    return words.concat(last).join(' ')
+  }
 }
 
 const BugDetail = () => {
@@ -61,7 +100,9 @@ const BugDetail = () => {
           </label>
           <div className="col-10">
             <div className="input-group">
-              <span className="input-group-text">@{user.username}</span>
+              <span className="input-group-text">
+                <PersonLink person={user} />
+              </span>
               <input
                 readOnly
                 type="text"
@@ -78,7 +119,9 @@ const BugDetail = () => {
           </label>
           <div className="col-10">
             <div className="input-group">
-              <span className="input-group-text">@{staff.username}</span>
+              <span className="input-group-text">
+                <PersonLink person={staff} />
+              </span>
               <input
                 readOnly
                 type="text"
@@ -95,13 +138,13 @@ const BugDetail = () => {
           <li key={index} className="list-group-item">
             <div className="d-flex justify-content-between">
               <div>
-                <strong>{formatTime(time)}</strong>
-                {' ' + content}
+                <strong>{formatTime(time)}</strong>{' '}
+                <ContentParser content={content} />
               </div>
               <div className="text-primary">
-                <em>{'@'}</em>
-                {peopleList.find((person) => person.id === authorID)
-                  ?.username ?? '[deleted]'}
+                <PersonLink
+                  person={peopleList.find((person) => person.id === authorID)}
+                />
               </div>
             </div>
           </li>
