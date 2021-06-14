@@ -3,14 +3,14 @@ const express = require('express')
 const router = express.Router()
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const { role } = req.auth
   if (role === 'staff') {
-    bugController.getBugsByStaffID(req, res)
+    await bugController.getBugsByStaffID(req, res)
   } else if (role === 'user') {
-    bugController.getBugsByUserID(req, res)
+    await bugController.getBugsByUserID(req, res)
   } else {
-    bugController.getBugs(req, res)
+    await bugController.getBugs(req, res)
   }
 })
 
@@ -26,5 +26,6 @@ router.patch('/:bugID', (req, res) => {
 })
 
 router.delete('/:bugID', bugController.deleteBugByID)
+
 
 module.exports = router

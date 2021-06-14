@@ -16,11 +16,11 @@ const formatTime = (dt) => {
   return current_year + '-' + current_month + '-' + current_date + ' ' + current_hrs + ':' + current_mins + ':' + current_secs
 }
 
-const getUpdatesByBugID = (id) => {
+const getUpdatesByBugID = async (id) => {
   const sql =
     `SELECT update_time as time, content, BIN_TO_UUID(authorID) as authorID
     FROM bug_update WHERE bug_id = UUID_TO_BIN(?)`
-  return connection.query(sql, [id])
+  return await connection.query(sql, [id])
 }
 
 const fixSQLTime = (updates) => updates.map(update => ({
@@ -28,19 +28,18 @@ const fixSQLTime = (updates) => updates.map(update => ({
   time: formatTime(update.time)
 }))
 
-const includeBugUpdates = (bugs, response) => {
+const includeBugUpdates = async (bugs, response) => {
   const fullBugs = bugs.map(bug => getUpdatesByBugID(bug.id))
-  Promise.all(fullBugs).then(fullBug => {
-    response.json(bugs.map((bug, index) => {
-      return {
-        ...bug,
-        updates: fixSQLTime(fullBug[index][0])
-      }
-    }))
-  })
+  const fullBug = await Promise.all(fullBugs)
+  response.json(bugs.map((bug, index) => {
+    return {
+      ...bug,
+      updates: fixSQLTime(fullBug[index][0])
+    }
+  }))
 }
 
-exports.getBugs = (req, res) => {
+exports.getBugs = async (req, res) => {
   const sql =
     `SELECT 
     BIN_TO_UUID(b.bug_id) AS id, 
@@ -50,12 +49,11 @@ exports.getBugs = (req, res) => {
     BIN_TO_UUID(staffID) AS staffID
     FROM bug_report AS b, work_on AS w
     WHERE b.bug_id = w.bug_id AND b.bug_status=0`
-  connection.query(sql).then(result => {
-    includeBugUpdates(result[0], res)
-  })
+  const result = await connection.query(sql)
+  await includeBugUpdates(result[0], res)
 }
 
-exports.getBugsByStaffID = (req, res) => {
+exports.getBugsByStaffID = async (req, res) => {
   const { id } = req.auth
   const sql =
     `SELECT 
@@ -68,12 +66,11 @@ exports.getBugsByStaffID = (req, res) => {
     WHERE b.bug_id = w.bug_id
     AND w.staffID = UUID_TO_BIN(?)
     AND b.bug_status=0`
-  connection.query(sql, [id]).then(result => {
-    includeBugUpdates(result[0], res)
-  })
+  const result = await connection.query(sql, [id])
+  await includeBugUpdates(result[0], res)
 }
 
-exports.getBugsByUserID = (req, res) => {
+exports.getBugsByUserID = async (req, res) => {
   const { id } = req.auth
   const sql =
     `SELECT 
@@ -86,57 +83,48 @@ exports.getBugsByUserID = (req, res) => {
     WHERE b.bug_id = w.bug_id
     AND b.userID = UUID_TO_BIN(?)
     AND b.bug_status=0`
-  connection.query(sql, [id]).then(result => {
-    includeBugUpdates(result[0], res)
-  })
+  const result = connection.query(sql, [id])
+  await includeBugUpdates(result[0], res)
 }
 
-exports.createBug = (req, res) => {
+exports.createBug = async (req, res) => {
   const UUID = uuidv4()
   const { title, description, userID, staffID, updates } = req.body
   const { time, content, authorID } = updates[0]
   sql1 = 'INSERT INTO bug_report(bug_id, title, bug_description, bug_status, userID) VALUES (UUID_TO_BIN(?), ?, ?, 0, UUID_TO_BIN(?))'
   sql2 = 'INSERT INTO work_on(bug_id, staffID) VALUES(UUID_TO_BIN(?), UUID_TO_BIN(?))'
   sql3 = 'INSERT INTO bug_update(bug_id, content, update_time, authorID) VALUES (UUID_TO_BIN(?), ?, ?, UUID_TO_BIN(?))'
-  connection.query(sql1, [UUID, title, description, userID]).then(() => {
-    connection.query(sql2, [UUID, staffID]).then(() => {
-      connection.query(sql3, [UUID, content, time, authorID]).then(() => {
-        res.json({
-          id: UUID
-        })
-      })
-    })
+  await connection.query(sql1, [UUID, title, description, userID])
+  await connection.query(sql2, [UUID, staffID])
+  await connection.query(sql3, [UUID, content, time, authorID])
+  res.json({
+    id: UUID
   })
 }
 
-exports.updateBugByID = (req, res) => {
+exports.updateBugByID = async (req, res) => {
   const { updates } = req.body
   const bugID = req.params.bugID
   delete_sql = 'DELETE FROM bug_update WHERE bug_id = UUID_TO_BIN(?)'
   insert_sql = 'INSERT INTO bug_update(bug_id, content, update_time, authorID) VALUES (UUID_TO_BIN(?), ?, ?, UUID_TO_BIN(?))'
-  connection.query(delete_sql, [bugID]).then(() => {
-    const promises = updates.map(({ content, time, authorID }) =>
-      connection.query(insert_sql, [bugID, content, time, authorID]))
-    Promise.all(promises).then(() => {
-      res.end()
-    })
-  })
+  await connection.query(delete_sql, [bugID])
+  const promises = updates.map(({ content, time, authorID }) =>
+    connection.query(insert_sql, [bugID, content, time, authorID]))
+  await Promise.all(promises)
+  res.end()
 }
 
-exports.forwardBugByID = (req, res) => {
+exports.forwardBugByID = async (req, res) => {
   const { staffID } = req.body
   const bugID = req.params.bugID
   update_sql = 'UPDATE work_on SET staffID=UUID_TO_BIN(?) WHERE bug_id = UUID_TO_BIN(?)'
-  connection.query(update_sql, [staffID, bugID]).then(() => {
-    res.end()
-  })
+  await connection.query(update_sql, [staffID, bugID])
+  res.end()
 }
 
-exports.deleteBugByID = (req, res) => {
+exports.deleteBugByID = async (req, res) => {
   const id = req.params.bugID
-  connection.query('DELETE FROM work_on WHERE bug_id = UUID_TO_BIN(?)', [id]).then(() => {
-    connection.query('DELETE FROM bug_report WHERE bug_id = UUID_TO_BIN(?)', [id]).then(() => {
-      res.end()
-    })
-  })
+  await connection.query('DELETE FROM work_on WHERE bug_id = UUID_TO_BIN(?)', [id])
+  await connection.query('DELETE FROM bug_report WHERE bug_id = UUID_TO_BIN(?)', [id])
+  res.end()
 }
