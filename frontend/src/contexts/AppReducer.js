@@ -10,6 +10,8 @@ export const initialState = {
 }
 
 function appReducer(state, action) {
+  console.log('APP:', action)
+
   try {
     switch (action.type) {
 
@@ -30,6 +32,14 @@ function appReducer(state, action) {
         return {
           ...state,
           selectedBug
+        }
+
+      case 'LOAD_BUGS':
+        const { bugList: _bugList } = action
+        return {
+          ...state,
+          ...loadBug(_bugList),
+          renderChildren: true
         }
 
       case 'SET_PERSON':
@@ -101,7 +111,10 @@ function appReducer(state, action) {
 
   } catch (error) {
     console.log(error)
-    return initialState
+    return {
+      ...initialState,
+      renderChildren: true
+    }
   }
 }
 

@@ -14,6 +14,8 @@ export const initialState = {
 }
 
 function authReducer(state, action) {
+  console.log('AUTH:', action)
+
   switch (action.type) {
     case 'LOAD_USER':
       const { user } = action
