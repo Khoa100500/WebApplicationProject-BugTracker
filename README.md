@@ -1,3 +1,6 @@
+
+How to run this project
+-------------------------------------------------------
 install global dependency:
 npm i -g nodemon
 
@@ -8,3 +11,6 @@ note: đổi database trong file backend/src/config.js
 
 chạy frontend sau:
 npm start
+-------------------------------------------------------
+
+Report and Presentation inside the Report + Presentation Folder
