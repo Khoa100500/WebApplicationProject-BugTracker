@@ -1,5 +1,4 @@
 const express = require('express')
-const { verifyToken } = require('./controllers/auth')
 const cors = require('cors')
 
 const app = express()
@@ -13,11 +12,9 @@ app.use((req, res, next) => {
 
 // Load routes
 apiRouter = express.Router()
-apiRouter.use(verifyToken)
 apiRouter.use('/login', require('./routes/login'))
 apiRouter.use('/bugs', require('./routes/bug'))
 apiRouter.use('/people', require('./routes/people'))
-
 
 app.use('/api', apiRouter)
 

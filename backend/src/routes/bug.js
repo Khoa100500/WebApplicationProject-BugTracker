@@ -1,10 +1,11 @@
 const bugController = require('../controllers/bug')
 const express = require('express')
+const { permit } = require('../controllers/auth')
 const router = express.Router()
 
 
-router.get('/', async (req, res) => {
-  const { role } = req.auth
+router.get('/', permit(), async (req, res) => {
+  const { role } = req.locals.user
   if (role === 'staff') {
     await bugController.getBugsByStaffID(req, res)
   } else if (role === 'user') {
@@ -14,18 +15,18 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.post('/', bugController.createBug)
+router.post('/', permit('admin'), bugController.createBug)
 
-router.patch('/:bugID', (req, res) => {
+router.patch('/:bugID', permit('admin', 'staff'), async (req, res) => {
   const { staffID } = req.body
   if (staffID) {
-    bugController.forwardBugByID(req, res)
+    await bugController.forwardBugByID(req, res)
   } else {
-    bugController.updateBugByID(req, res)
+    await bugController.updateBugByID(req, res)
   }
 })
 
-router.delete('/:bugID', bugController.deleteBugByID)
+router.delete('/:bugID', permit('admin', 'user'), bugController.deleteBugByID)
 
 
 module.exports = router

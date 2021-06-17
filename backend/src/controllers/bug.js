@@ -54,7 +54,7 @@ exports.getBugs = async (req, res) => {
 }
 
 exports.getBugsByStaffID = async (req, res) => {
-  const { id } = req.auth
+  const { id } = req.locals.user
   const sql =
     `SELECT 
     BIN_TO_UUID(b.bug_id) AS id, 
@@ -71,7 +71,7 @@ exports.getBugsByStaffID = async (req, res) => {
 }
 
 exports.getBugsByUserID = async (req, res) => {
-  const { id } = req.auth
+  const { id } = req.locals.user
   const sql =
     `SELECT 
     BIN_TO_UUID(b.bug_id) AS id, 

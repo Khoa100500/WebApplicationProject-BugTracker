@@ -1,15 +1,16 @@
 const peopleController = require('../controllers/people')
 const express = require('express')
+const { permit } = require('../controllers/auth')
 const router = express.Router()
 
 
-router.get('/', peopleController.getPeople)
+router.get('/', permit(), peopleController.getPeople)
 
-router.post('/', peopleController.createPerson)
+router.post('/', permit('admin'), peopleController.createPerson)
 
-router.patch('/:id', peopleController.updatePersonByID)
+router.patch('/:id', permit('admin'), peopleController.updatePersonByID)
 
-router.delete('/:id', peopleController.deletePersonByID)
+router.delete('/:id', permit('admin'), peopleController.deletePersonByID)
 
 
 module.exports = router
