@@ -1,4 +1,4 @@
-import { createContext, useEffect, useContext, useReducer } from 'react'
+import { createContext, useEffect, useContext, useReducer, useState } from 'react'
 import { API } from '../utils'
 import AuthReducer, { initialState } from './AuthReducer'
 
@@ -10,6 +10,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(AuthReducer, initialState)
+  const [resInterceptor, setResInterceptor] = useState()
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -17,32 +18,35 @@ export function AuthProvider({ children }) {
       dispatch({
         type: 'LOAD_USER', user
       })
+      setResInterceptor(API.interceptors.response.use(
+        res => res,
+        err => {
+          if (err.response.status === 401) {
+            alert('Your authentication token is expired. Please login again.')
+            dispatch({
+              type: 'LOG_OUT'
+            })
+          }
+          return Promise.reject(err)
+        }
+      ))
     } else {
       dispatch({
         type: 'RENDER_CHILDREN'
       })
     }
-    API.interceptors.response.use(
-      res => res,
-      err => {
-        if (err.response.status === 403) {
-          alert('Your authentication token is expired. Please login again.')
-          dispatch({
-            type: 'LOG_OUT'
-          })
-        } else {
-          throw err
-        }
-      }
-    )
+    return () => {
+      API.interceptors.response.eject(resInterceptor)
+    }
   }, [])
 
 
   const login = async (username, password) => {
-    const user = (await API.post('/login', {
+    const response = await API.post('/login', {
       username,
-      password,
-    })).data
+      password
+    })
+    const user = response.data
     if (user.id) {
       dispatch({
         type: 'LOAD_USER', user
@@ -51,6 +55,7 @@ export function AuthProvider({ children }) {
   }
 
   const logout = () => {
+    API.interceptors.response.eject(resInterceptor)
     dispatch({
       type: 'LOG_OUT'
     })

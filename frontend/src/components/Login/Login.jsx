@@ -17,7 +17,7 @@ const Login = () => {
       .catch((err) => {
         setLoading(false)
         passwordRef.current.value = ''
-        alert(`Failed to login: ${err}`)
+        alert(err.response.data.message)
       })
   }
 

@@ -10,7 +10,7 @@ export const initialState = {
     accessToken: undefined,
   },
   renderChildren: false,
-  interceptor: undefined
+  reqInterceptor: undefined
 }
 
 function authReducer(state, action) {
@@ -23,7 +23,7 @@ function authReducer(state, action) {
       return {
         user,
         renderChildren: true,
-        interceptor: API.interceptors.request.use((config => {
+        reqInterceptor: API.interceptors.request.use((config => {
           config.headers = { 'x-access-token': user.accessToken }
           return config
         }))
@@ -31,7 +31,7 @@ function authReducer(state, action) {
 
     case 'LOG_OUT':
       localStorage.removeItem('user')
-      API.interceptors.request.eject(state.interceptor)
+      API.interceptors.request.eject(state.reqInterceptor)
       return {
         ...initialState,
         renderChildren: true

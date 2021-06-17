@@ -17,7 +17,7 @@ const EditPerson = () => {
 
   const resetInput = () => {
     usernameRef.current.value = person.username
-    passwordRef.current.value = person.password
+    passwordRef.current.value = ''
     nameRef.current.value = person.name
   }
 
