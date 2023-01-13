@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "express": "^5.0.0-alpha.8",
     "jsonwebtoken": "^8.5.1",
-    "mysql2": "^2.2.5",
+    "mysql2": "^3.0.1",
     "uuid": "^9.0.0"
   }
 }
